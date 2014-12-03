@@ -1,0 +1,503 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		932850091A23C16B007B434F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932850081A23C16B007B434F /* AppDelegate.swift */; };
+		9328500B1A23C16B007B434F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328500A1A23C16B007B434F /* ViewController.swift */; };
+		9328500E1A23C16B007B434F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9328500C1A23C16B007B434F /* Main.storyboard */; };
+		932850101A23C16B007B434F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9328500F1A23C16B007B434F /* Images.xcassets */; };
+		932850131A23C16B007B434F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 932850111A23C16B007B434F /* LaunchScreen.xib */; };
+		9328501F1A23C16B007B434F /* PhotoDropTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328501E1A23C16B007B434F /* PhotoDropTests.swift */; };
+		9328502B1A23C23E007B434F /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932850281A23C23E007B434F /* SendViewController.swift */; };
+		9328502C1A23C23E007B434F /* ReceiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932850291A23C23E007B434F /* ReceiveViewController.swift */; };
+		9328502D1A23C23E007B434F /* PhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328502A1A23C23E007B434F /* PhotoViewCell.swift */; };
+		9328502F1A23C250007B434F /* UIImage+QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328502E1A23C250007B434F /* UIImage+QRCode.swift */; };
+		932850371A23C2F5007B434F /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932850351A23C2F5007B434F /* CouchbaseLite.framework */; };
+		932850381A23C2F5007B434F /* CouchbaseLiteListener.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932850361A23C2F5007B434F /* CouchbaseLiteListener.framework */; };
+		9328503F1A23C336007B434F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932850391A23C336007B434F /* AVFoundation.framework */; };
+		932850401A23C336007B434F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9328503A1A23C336007B434F /* CFNetwork.framework */; };
+		932850411A23C336007B434F /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9328503B1A23C336007B434F /* libc++.dylib */; };
+		932850421A23C336007B434F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9328503C1A23C336007B434F /* libsqlite3.dylib */; };
+		932850431A23C336007B434F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9328503D1A23C336007B434F /* Security.framework */; };
+		932850441A23C336007B434F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9328503E1A23C336007B434F /* SystemConfiguration.framework */; };
+		932850471A23C360007B434F /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932850451A23C360007B434F /* AssetsLibrary.framework */; };
+		932850481A23C360007B434F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 932850461A23C360007B434F /* libz.dylib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		932850191A23C16B007B434F /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 93284FFB1A23C16B007B434F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 932850021A23C16B007B434F;
+			remoteInfo = PhotoDrop;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		932850031A23C16B007B434F /* PhotoDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		932850071A23C16B007B434F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		932850081A23C16B007B434F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		9328500A1A23C16B007B434F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		9328500D1A23C16B007B434F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		9328500F1A23C16B007B434F /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		932850121A23C16B007B434F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
+		932850181A23C16B007B434F /* PhotoDropTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoDropTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		9328501D1A23C16B007B434F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9328501E1A23C16B007B434F /* PhotoDropTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDropTests.swift; sourceTree = "<group>"; };
+		932850281A23C23E007B434F /* SendViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
+		932850291A23C23E007B434F /* ReceiveViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReceiveViewController.swift; sourceTree = "<group>"; };
+		9328502A1A23C23E007B434F /* PhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewCell.swift; sourceTree = "<group>"; };
+		9328502E1A23C250007B434F /* UIImage+QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+QRCode.swift"; sourceTree = "<group>"; };
+		932850301A23C267007B434F /* PhotoDrop-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PhotoDrop-Bridging-Header.h"; sourceTree = "<group>"; };
+		932850351A23C2F5007B434F /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = "<group>"; };
+		932850361A23C2F5007B434F /* CouchbaseLiteListener.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLiteListener.framework; sourceTree = "<group>"; };
+		932850391A23C336007B434F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		9328503A1A23C336007B434F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		9328503B1A23C336007B434F /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
+		9328503C1A23C336007B434F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		9328503D1A23C336007B434F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		9328503E1A23C336007B434F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		932850451A23C360007B434F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
+		932850461A23C360007B434F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		932850001A23C16B007B434F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				932850471A23C360007B434F /* AssetsLibrary.framework in Frameworks */,
+				932850481A23C360007B434F /* libz.dylib in Frameworks */,
+				9328503F1A23C336007B434F /* AVFoundation.framework in Frameworks */,
+				932850401A23C336007B434F /* CFNetwork.framework in Frameworks */,
+				932850411A23C336007B434F /* libc++.dylib in Frameworks */,
+				932850421A23C336007B434F /* libsqlite3.dylib in Frameworks */,
+				932850431A23C336007B434F /* Security.framework in Frameworks */,
+				932850441A23C336007B434F /* SystemConfiguration.framework in Frameworks */,
+				932850381A23C2F5007B434F /* CouchbaseLiteListener.framework in Frameworks */,
+				932850371A23C2F5007B434F /* CouchbaseLite.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		932850151A23C16B007B434F /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		93284FFA1A23C16B007B434F = {
+			isa = PBXGroup;
+			children = (
+				932850051A23C16B007B434F /* PhotoDrop */,
+				9328501B1A23C16B007B434F /* PhotoDropTests */,
+				932850041A23C16B007B434F /* Products */,
+				932850341A23C2F5007B434F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		932850041A23C16B007B434F /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				932850031A23C16B007B434F /* PhotoDrop.app */,
+				932850181A23C16B007B434F /* PhotoDropTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		932850051A23C16B007B434F /* PhotoDrop */ = {
+			isa = PBXGroup;
+			children = (
+				932850081A23C16B007B434F /* AppDelegate.swift */,
+				9328500A1A23C16B007B434F /* ViewController.swift */,
+				932850281A23C23E007B434F /* SendViewController.swift */,
+				932850291A23C23E007B434F /* ReceiveViewController.swift */,
+				9328502A1A23C23E007B434F /* PhotoViewCell.swift */,
+				9328502E1A23C250007B434F /* UIImage+QRCode.swift */,
+				9328500C1A23C16B007B434F /* Main.storyboard */,
+				9328500F1A23C16B007B434F /* Images.xcassets */,
+				932850111A23C16B007B434F /* LaunchScreen.xib */,
+				932850061A23C16B007B434F /* Supporting Files */,
+				932850301A23C267007B434F /* PhotoDrop-Bridging-Header.h */,
+			);
+			path = PhotoDrop;
+			sourceTree = "<group>";
+		};
+		932850061A23C16B007B434F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				932850071A23C16B007B434F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		9328501B1A23C16B007B434F /* PhotoDropTests */ = {
+			isa = PBXGroup;
+			children = (
+				9328501E1A23C16B007B434F /* PhotoDropTests.swift */,
+				9328501C1A23C16B007B434F /* Supporting Files */,
+			);
+			path = PhotoDropTests;
+			sourceTree = "<group>";
+		};
+		9328501C1A23C16B007B434F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				9328501D1A23C16B007B434F /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		932850341A23C2F5007B434F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				932850451A23C360007B434F /* AssetsLibrary.framework */,
+				932850461A23C360007B434F /* libz.dylib */,
+				932850391A23C336007B434F /* AVFoundation.framework */,
+				9328503A1A23C336007B434F /* CFNetwork.framework */,
+				9328503B1A23C336007B434F /* libc++.dylib */,
+				9328503C1A23C336007B434F /* libsqlite3.dylib */,
+				9328503D1A23C336007B434F /* Security.framework */,
+				9328503E1A23C336007B434F /* SystemConfiguration.framework */,
+				932850351A23C2F5007B434F /* CouchbaseLite.framework */,
+				932850361A23C2F5007B434F /* CouchbaseLiteListener.framework */,
+			);
+			path = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		932850021A23C16B007B434F /* PhotoDrop */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 932850221A23C16B007B434F /* Build configuration list for PBXNativeTarget "PhotoDrop" */;
+			buildPhases = (
+				93284FFF1A23C16B007B434F /* Sources */,
+				932850001A23C16B007B434F /* Frameworks */,
+				932850011A23C16B007B434F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PhotoDrop;
+			productName = PhotoDrop;
+			productReference = 932850031A23C16B007B434F /* PhotoDrop.app */;
+			productType = "com.apple.product-type.application";
+		};
+		932850171A23C16B007B434F /* PhotoDropTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 932850251A23C16B007B434F /* Build configuration list for PBXNativeTarget "PhotoDropTests" */;
+			buildPhases = (
+				932850141A23C16B007B434F /* Sources */,
+				932850151A23C16B007B434F /* Frameworks */,
+				932850161A23C16B007B434F /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9328501A1A23C16B007B434F /* PBXTargetDependency */,
+			);
+			name = PhotoDropTests;
+			productName = PhotoDropTests;
+			productReference = 932850181A23C16B007B434F /* PhotoDropTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		93284FFB1A23C16B007B434F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0610;
+				ORGANIZATIONNAME = Couchbase;
+				TargetAttributes = {
+					932850021A23C16B007B434F = {
+						CreatedOnToolsVersion = 6.1;
+					};
+					932850171A23C16B007B434F = {
+						CreatedOnToolsVersion = 6.1;
+						TestTargetID = 932850021A23C16B007B434F;
+					};
+				};
+			};
+			buildConfigurationList = 93284FFE1A23C16B007B434F /* Build configuration list for PBXProject "PhotoDrop" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 93284FFA1A23C16B007B434F;
+			productRefGroup = 932850041A23C16B007B434F /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				932850021A23C16B007B434F /* PhotoDrop */,
+				932850171A23C16B007B434F /* PhotoDropTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		932850011A23C16B007B434F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9328500E1A23C16B007B434F /* Main.storyboard in Resources */,
+				932850131A23C16B007B434F /* LaunchScreen.xib in Resources */,
+				932850101A23C16B007B434F /* Images.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		932850161A23C16B007B434F /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		93284FFF1A23C16B007B434F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9328502D1A23C23E007B434F /* PhotoViewCell.swift in Sources */,
+				9328502F1A23C250007B434F /* UIImage+QRCode.swift in Sources */,
+				9328502C1A23C23E007B434F /* ReceiveViewController.swift in Sources */,
+				9328502B1A23C23E007B434F /* SendViewController.swift in Sources */,
+				9328500B1A23C16B007B434F /* ViewController.swift in Sources */,
+				932850091A23C16B007B434F /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		932850141A23C16B007B434F /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9328501F1A23C16B007B434F /* PhotoDropTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9328501A1A23C16B007B434F /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 932850021A23C16B007B434F /* PhotoDrop */;
+			targetProxy = 932850191A23C16B007B434F /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		9328500C1A23C16B007B434F /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				9328500D1A23C16B007B434F /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		932850111A23C16B007B434F /* LaunchScreen.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				932850121A23C16B007B434F /* Base */,
+			);
+			name = LaunchScreen.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		932850201A23C16B007B434F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		932850211A23C16B007B434F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		932850231A23C16B007B434F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = PhotoDrop/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PhotoDrop/PhotoDrop-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		932850241A23C16B007B434F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = PhotoDrop/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "PhotoDrop/PhotoDrop-Bridging-Header.h";
+			};
+			name = Release;
+		};
+		932850261A23C16B007B434F /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PhotoDropTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhotoDrop.app/PhotoDrop";
+			};
+			name = Debug;
+		};
+		932850271A23C16B007B434F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = PhotoDropTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhotoDrop.app/PhotoDrop";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		93284FFE1A23C16B007B434F /* Build configuration list for PBXProject "PhotoDrop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				932850201A23C16B007B434F /* Debug */,
+				932850211A23C16B007B434F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		932850221A23C16B007B434F /* Build configuration list for PBXNativeTarget "PhotoDrop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				932850231A23C16B007B434F /* Debug */,
+				932850241A23C16B007B434F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		932850251A23C16B007B434F /* Build configuration list for PBXNativeTarget "PhotoDropTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				932850261A23C16B007B434F /* Debug */,
+				932850271A23C16B007B434F /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 93284FFB1A23C16B007B434F /* Project object */;
+}
