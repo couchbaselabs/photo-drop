@@ -35,11 +35,6 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
 
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
-        if replicator != nil {
-            replicator.stop()
-            NSNotificationCenter.defaultCenter().removeObserver(self,
-                name: kCBLReplicationChangeNotification, object: replicator)
-        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -50,9 +45,16 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
 
     @IBAction func cancelAction(sender: AnyObject) {
         self.navigationController?.dismissViewControllerAnimated(true,
-            completion: { () -> Void in })
+            completion: { () -> Void in
+                if self.replicator != nil {
+                    self.replicator.stop()
+                    NSNotificationCenter.defaultCenter().removeObserver(self,
+                        name: kCBLReplicationChangeNotification, object: self.replicator)
+                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                }
+        })
     }
-
+    
     /*
     // MARK: - Navigation
 
@@ -130,23 +132,17 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         let app = UIApplication.sharedApplication().delegate as AppDelegate
         var docIds: [String] = []
         for asset in sharedAssets! {
-            var orientation = UIImageOrientation.Up
-            if let oValue = asset.valueForProperty("ALAssetPropertyOrientation") as? NSNumber {
-                orientation = UIImageOrientation(rawValue: oValue.integerValue)!
-            }
-            var properties: [String: AnyObject] = ["orientation" : orientation.rawValue]
             let representation = asset.defaultRepresentation()
-            let cg = representation.fullResolutionImage().takeUnretainedValue()
-            let scale = CGFloat(representation.scale())
-            let image = UIImage(CGImage: cg, scale: scale, orientation: orientation)
-            let data = UIImagePNGRepresentation(image)
+            var bufferSize = UInt(Int(representation.size()))
+            var buffer = UnsafeMutablePointer<UInt8>(malloc(bufferSize))
+            var buffered = representation.getBytes(buffer, fromOffset: 0,
+                length: Int(representation.size()), error: nil)
+            var data = NSData(bytesNoCopy: buffer, length: buffered, freeWhenDone: true)
 
             var error: NSError?
             let doc = app.database.createDocument()
-            doc.putProperties(properties, error: &error)
-
             let rev = doc.newRevision()
-            rev.setAttachmentNamed("photo.png", withContentType: "image/png", content: data)
+            rev.setAttachmentNamed("photo", withContentType: "application/octet-stream", content: data)
             let saved = rev.save(&error)
 
             if saved != nil {

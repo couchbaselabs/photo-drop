@@ -107,23 +107,21 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
             if doc.currentRevision.attachments.count > 0 {
                 let attachment = doc.currentRevision.attachments[0] as CBLAttachment
                 if let image = UIImage(data: attachment.content)?.CGImage {
-                    let orientation : ALAssetOrientation = ALAssetOrientation(rawValue:
-                        doc.properties["orientation"] as Int)!
                     let library = assetsLibrary()
-                    library.writeImageToSavedPhotosAlbum(image, orientation: orientation,
+                    library.writeImageDataToSavedPhotosAlbum(attachment.content, metadata: nil,
                         completionBlock: { (url: NSURL!, error: NSError!) -> Void in
-                            if url != nil {
-                                library.assetForURL(url, resultBlock:
-                                    {(asset: ALAsset!) -> Void in
-                                        self.assets.insert(asset, atIndex: 0)
-                                        dispatch_async(dispatch_get_main_queue(), {
-                                            self.collectionView.insertItemsAtIndexPaths(
-                                                [NSIndexPath(forRow: 0, inSection: 0)])
-                                        })
+                        if url != nil {
+                            library.assetForURL(url, resultBlock:
+                                {(asset: ALAsset!) -> Void in
+                                    self.assets.insert(asset, atIndex: 0)
+                                    dispatch_async(dispatch_get_main_queue(), {
+                                        self.collectionView.insertItemsAtIndexPaths(
+                                            [NSIndexPath(forRow: 0, inSection: 0)])
                                     })
-                                    {(error: NSError!) -> Void in
-                                }
+                                })
+                                {(error: NSError!) -> Void in
                             }
+                        }
                     })
                 }
             }
@@ -139,7 +137,6 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
                 (notification) -> Void in
                 if let changes = notification.userInfo!["changes"] as? [CBLDatabaseChange] {
                     for change in changes {
-                        NSLog("%@", change.documentID)
                         dispatch_async(dispatch_get_main_queue(), {
                             if self.collectionView.hidden {
                                 self.collectionView.hidden = false
