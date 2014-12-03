@@ -101,6 +101,11 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     func captureOutput(captureOutput: AVCaptureOutput!,
         didOutputMetadataObjects metadataObjects: [AnyObject]!,
         fromConnection connection: AVCaptureConnection!) {
+        if session == nil {
+            // Workaround for iOS7 bugs
+            return
+        }
+
         for metadata in metadataObjects as [AVMetadataObject] {
             if metadata.type == AVMetadataObjectTypeQRCode {
                 let transformed = previewLayer.transformedMetadataObjectForMetadataObject(metadata)
