@@ -72,6 +72,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         library.enumerateGroupsWithTypes(ALAssetsGroupSavedPhotos, usingBlock:
             { (group:ALAssetsGroup!, stop:UnsafeMutablePointer<ObjCBool>) -> Void in
                 if group != nil {
+                    group.setAssetsFilter(ALAssetsFilter.allPhotos())
                     group.enumerateAssetsWithOptions(NSEnumerationOptions.Reverse,
                         usingBlock: { (asset:ALAsset!, index:Int,
                             stop: UnsafeMutablePointer<ObjCBool>) -> Void in
