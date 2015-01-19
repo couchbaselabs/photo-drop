@@ -22,15 +22,28 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
     var library: ALAssetsLibrary!
 
     var assets:[ALAsset] = []
+    
+    var database: CBLDatabase!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         collectionView.hidden = true;
+        
+        var error: NSError?
+        database = DatabaseUtil.getEmptyDatabase("db", error: &error)
+        if error != nil {
+            AppDelegate.showMessage("Cannot get a database with error : \(error!.code)", title: "Error")
+        }
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
+        
+        if database == nil {
+            return;
+        }
+        
         startListener()
 
         if let url = syncUrl()?.absoluteString {
@@ -41,7 +54,15 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
 
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
+        
         stopListener()
+        
+        if database != nil {
+            var error: NSError?
+            if !database.deleteDatabase(&error) {
+                NSLog("Cannot delete the database with error : ", error!.description)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -73,8 +94,7 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
             startObserveDatabaseChange()
         } else {
             listener = nil
-            let app = UIApplication.sharedApplication().delegate as AppDelegate
-            app.showMessage("Cannot start listener", title: "Error")
+            AppDelegate.showMessage("Cannot start listener", title: "Error")
         }
     }
 
@@ -88,8 +108,7 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
 
     func syncUrl() -> NSURL? {
         if listener != nil {
-            let app = UIApplication.sharedApplication().delegate as AppDelegate
-            return NSURL(string: app.database.name, relativeToURL: listener.URL)
+            return NSURL(string: database.name, relativeToURL: listener.URL)
         }
         return nil
     }
@@ -103,7 +122,7 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
 
     func saveImageFromDocument(docId: String) {
         let app = UIApplication.sharedApplication().delegate as AppDelegate
-        if let doc = app.database.existingDocumentWithID(docId) {
+        if let doc = database.existingDocumentWithID(docId) {
             if doc.currentRevision.attachments.count > 0 {
                 let attachment = doc.currentRevision.attachments[0] as CBLAttachment
                 if let image = UIImage(data: attachment.content)?.CGImage {
@@ -131,9 +150,8 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
     // MARK: - Database Change
 
     func startObserveDatabaseChange() {
-        let app = UIApplication.sharedApplication().delegate as AppDelegate
         NSNotificationCenter.defaultCenter().addObserverForName(kCBLDatabaseChangeNotification,
-            object: app.database, queue: nil) {
+            object: database, queue: nil) {
                 (notification) -> Void in
                 if let changes = notification.userInfo!["changes"] as? [CBLDatabaseChange] {
                     for change in changes {
@@ -149,9 +167,8 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
     }
 
     func stopObserveDatabaseChange() {
-        let app = UIApplication.sharedApplication().delegate as AppDelegate
         NSNotificationCenter.defaultCenter().removeObserver(self,
-            name: kCBLDatabaseChangeNotification, object: app.database)
+            name: kCBLDatabaseChangeNotification, object: database)
     }
 
     // MARK: - UICollectionView

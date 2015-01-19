@@ -14,11 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
     
-    var database: CBLDatabase!
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         var error: NSError?
-        database = CBLManager.sharedInstance().databaseNamed("db", error: &error)
         return true
     }
 
@@ -45,8 +42,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     // MARK: - Message
-
-    func showMessage(message: String, title: String) {
+    
+    class func showMessage(message: String, title: String) {
         UIAlertView(title: title, message: message, delegate: nil, cancelButtonTitle: "OK").show()
     }
 
