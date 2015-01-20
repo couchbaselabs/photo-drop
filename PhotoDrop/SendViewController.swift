@@ -21,20 +21,36 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     var replicator: CBLReplication!
 
     var sharedAssets:[ALAsset]?
+    
+    var database: CBLDatabase!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        var error: NSError?
+        database = DatabaseUtil.getEmptyDatabase("db", error: &error)
+        if error != nil {
+            AppDelegate.showMessage("Cannot get a database with error : \(error!.code)", title: "Error")
+        }
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-        if session == nil {
+        
+        if database != nil && session == nil {
             startCaptureSession()
         }
     }
 
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
+        
+        if database != nil {
+            var error: NSError?
+            if !database.deleteDatabase(&error) {
+                NSLog("Cannot delete the database with error : ", error!.description)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -54,15 +70,6 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
                 }
         })
     }
-    
-    /*
-    // MARK: - Navigation
-
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
     // MARK: - Capture QR Code
 
@@ -71,7 +78,7 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
 
         let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         if device == nil {
-            app.showMessage("No video capture devices found", title: "")
+            AppDelegate.showMessage("No video capture devices found", title: "")
             return
         }
 
@@ -94,7 +101,7 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
 
             session.startRunning()
         } else {
-            app.showMessage("Cannot start QRCode capture session", title: "Error")
+            AppDelegate.showMessage("Cannot start QRCode capture session", title: "Error")
         }
     }
 
@@ -128,8 +135,7 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         self.previewView.hidden = true;
         self.statusLabel.text = "Sending Photos ..."
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
-
-        let app = UIApplication.sharedApplication().delegate as AppDelegate
+        
         var docIds: [String] = []
         for asset in sharedAssets! {
             let representation = asset.defaultRepresentation()
@@ -140,7 +146,7 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
             var data = NSData(bytesNoCopy: buffer, length: buffered, freeWhenDone: true)
 
             var error: NSError?
-            let doc = app.database.createDocument()
+            let doc = database.createDocument()
             let rev = doc.newRevision()
             rev.setAttachmentNamed("photo", withContentType: "application/octet-stream", content: data)
             let saved = rev.save(&error)
@@ -151,7 +157,7 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         }
 
         if docIds.count > 0 {
-            replicator = app.database.createPushReplication(url)
+            replicator = database.createPushReplication(url)
             replicator.documentIDs = docIds
 
             NSNotificationCenter.defaultCenter().addObserverForName(kCBLReplicationChangeNotification,

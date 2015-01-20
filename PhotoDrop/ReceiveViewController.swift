@@ -22,26 +22,52 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
     var library: ALAssetsLibrary!
 
     var assets:[ALAsset] = []
+    
+    var database: CBLDatabase!
+
+    var syncUrl: NSURL!
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         collectionView.hidden = true;
+        
+        var error: NSError?
+        database = DatabaseUtil.getEmptyDatabase("db", error: &error)
+        if error != nil {
+            AppDelegate.showMessage("Cannot get a database with error : \(error!.code)", title: "Error")
+        }
     }
 
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
+        
+        if database == nil {
+            return;
+        }
+        
+        if (!startListener()) {
+            AppDelegate.showMessage("Cannot start listener", title: "Error")
+            return;
+        }
 
-        startListener()
-
-        if let url = syncUrl()?.absoluteString {
-            imageView.image = UIImage.qrCodeImageForString(url,
+        if syncUrl != nil {
+            imageView.image = UIImage.qrCodeImageForString(syncUrl.absoluteString,
                 size: imageView.frame.size)
         }
     }
 
     override func viewDidDisappear(animated: Bool) {
         super.viewDidDisappear(animated)
+        
         stopListener()
+        
+        if database != nil {
+            var error: NSError?
+            if !database.deleteDatabase(&error) {
+                NSLog("Cannot delete the database with error : ", error!.description)
+            }
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -61,20 +87,36 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
 
     // MARK: - Listener
 
-    func startListener() {
+    func startListener() -> Bool {
         if listener != nil {
-            return
+            return true
         }
 
         var error: NSError?
         listener = CBLListener(manager: CBLManager.sharedInstance(), port: 0)
+
+        listener.requiresAuth = true
+        let username = secureGenerateKey(NSCharacterSet.URLUserAllowedCharacterSet())
+        let password = secureGenerateKey(NSCharacterSet.URLPasswordAllowedCharacterSet())
+        listener.setPasswords([username : password])
+
         var success = listener.start(&error)
         if success {
+            // Set a sync url with the generated username and password:
+            if let url = NSURL(string: database.name, relativeToURL: listener.URL) {
+                if let urlComp = NSURLComponents(string: url.absoluteString!) {
+                    urlComp.user = username
+                    urlComp.password = password
+                    syncUrl = urlComp.URL
+                }
+            }
+
+            // Start observing for database changes:
             startObserveDatabaseChange()
+            return true
         } else {
             listener = nil
-            let app = UIApplication.sharedApplication().delegate as AppDelegate
-            app.showMessage("Cannot start listener", title: "Error")
+            return false
         }
     }
 
@@ -86,13 +128,15 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
         }
     }
 
-    func syncUrl() -> NSURL? {
-        if listener != nil {
-            let app = UIApplication.sharedApplication().delegate as AppDelegate
-            return NSURL(string: app.database.name, relativeToURL: listener.URL)
-        }
-        return nil
+    func secureGenerateKey(allowedCharacters: NSCharacterSet) -> String {
+        let data = NSMutableData(length:32)!
+        SecRandomCopyBytes(kSecRandomDefault, 32, UnsafeMutablePointer<UInt8>(data.mutableBytes))
+        let key = data.base64EncodedStringWithOptions(
+            NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
+        return key.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters)!
     }
+
+    // MARK: - ALAssetsLibrary
 
     func assetsLibrary() -> ALAssetsLibrary {
         if library == nil {
@@ -103,7 +147,7 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
 
     func saveImageFromDocument(docId: String) {
         let app = UIApplication.sharedApplication().delegate as AppDelegate
-        if let doc = app.database.existingDocumentWithID(docId) {
+        if let doc = database.existingDocumentWithID(docId) {
             if doc.currentRevision.attachments.count > 0 {
                 let attachment = doc.currentRevision.attachments[0] as CBLAttachment
                 if let image = UIImage(data: attachment.content)?.CGImage {
@@ -131,9 +175,8 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
     // MARK: - Database Change
 
     func startObserveDatabaseChange() {
-        let app = UIApplication.sharedApplication().delegate as AppDelegate
         NSNotificationCenter.defaultCenter().addObserverForName(kCBLDatabaseChangeNotification,
-            object: app.database, queue: nil) {
+            object: database, queue: nil) {
                 (notification) -> Void in
                 if let changes = notification.userInfo!["changes"] as? [CBLDatabaseChange] {
                     for change in changes {
@@ -149,9 +192,8 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
     }
 
     func stopObserveDatabaseChange() {
-        let app = UIApplication.sharedApplication().delegate as AppDelegate
         NSNotificationCenter.defaultCenter().removeObserver(self,
-            name: kCBLDatabaseChangeNotification, object: app.database)
+            name: kCBLDatabaseChangeNotification, object: database)
     }
 
     // MARK: - UICollectionView

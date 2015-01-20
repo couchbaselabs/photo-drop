@@ -27,6 +27,7 @@
 		932850441A23C336007B434F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9328503E1A23C336007B434F /* SystemConfiguration.framework */; };
 		932850471A23C360007B434F /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932850451A23C360007B434F /* AssetsLibrary.framework */; };
 		932850481A23C360007B434F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 932850461A23C360007B434F /* libz.dylib */; };
+		9359892A1A6CC434007E5F7E /* DatabaseUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935989291A6CC434007E5F7E /* DatabaseUtil.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +66,7 @@
 		9328503E1A23C336007B434F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		932850451A23C360007B434F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		932850461A23C360007B434F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		935989291A6CC434007E5F7E /* DatabaseUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseUtil.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -123,6 +125,7 @@
 				932850291A23C23E007B434F /* ReceiveViewController.swift */,
 				9328502A1A23C23E007B434F /* PhotoViewCell.swift */,
 				9328502E1A23C250007B434F /* UIImage+QRCode.swift */,
+				935989291A6CC434007E5F7E /* DatabaseUtil.swift */,
 				9328500C1A23C16B007B434F /* Main.storyboard */,
 				9328500F1A23C16B007B434F /* Images.xcassets */,
 				932850111A23C16B007B434F /* LaunchScreen.xib */,
@@ -279,6 +282,7 @@
 				9328502C1A23C23E007B434F /* ReceiveViewController.swift in Sources */,
 				9328502B1A23C23E007B434F /* SendViewController.swift in Sources */,
 				9328500B1A23C16B007B434F /* ViewController.swift in Sources */,
+				9359892A1A6CC434007E5F7E /* DatabaseUtil.swift in Sources */,
 				932850091A23C16B007B434F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
