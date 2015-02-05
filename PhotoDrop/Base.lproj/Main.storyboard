@@ -188,7 +188,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="gTU-Pr-9VE">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="gUM-55-q3i">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="gUM-55-q3i">
                             <connections>
                                 <action selector="cancelAction:" destination="5UX-hX-SbQ" id="bep-bb-D4s"/>
                             </connections>
@@ -239,7 +239,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ubn-Hq-Vic">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="NMG-Dg-gUV">
+                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="NMG-Dg-gUV">
                             <connections>
                                 <action selector="cancelAction:" destination="lM2-8G-0Mm" id="i5E-fL-whk"/>
                             </connections>
