@@ -8,3 +8,17 @@ One of the cool features of Couchbase Lite is an ability to do P2P replication b
 ![screenshot] (https://cloud.githubusercontent.com/assets/801454/6072270/7774976c-ad54-11e4-9034-2045bccaf6be.png)
 
 About the implementation, `PhotoDrop` uses a QRCode for peer discovery. The QRCode is used for advertising an adhoc endpoing URL that a sender can scan and send photos to. Basic Authentication is used for authenticating the sender. On the receiver side, we securely generate a one-time username & password, bundle them with the URL endpoint and encode them in a QRCode presented by the receiver to the sender. Once the sender scans the QRCode, the sender will have the user and password for authentication.
+
+## Build & Run
+1. Clone this repository.
+
+ ```
+ $ git clone https://github.com/couchbaselabs/photo-drop
+ ```
+2. Go into the ios folder.
+3. Download [Couchbase Lite iOS][CBL_DOWNLOAD] and extract the zip file.
+4. Copy `CouchbaseLite.framework` and `CouchbaseLiteListener.framework` into the `Frameworks` directory of this repo.
+5. Open PhotoDrop.xcodeproj.
+6. Click the Run button.
+
+[CBL_DOWNLOAD]: http://www.couchbase.com/nosql-databases/downloads#Couchbase_Mobile
