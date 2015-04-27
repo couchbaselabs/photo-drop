@@ -39,8 +39,8 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if segue.identifier == "send" {
-            let navigationController = segue.destinationViewController as UINavigationController
-            let controller = navigationController.topViewController as SendViewController
+            let navigationController = segue.destinationViewController as! UINavigationController
+            let controller = navigationController.topViewController as! SendViewController
             controller.sharedAssets = selectedAssets
         }
     }
@@ -99,7 +99,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func collectionView(collectionView: UICollectionView,
         cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("photoCell",
-            forIndexPath: indexPath) as PhotoViewCell
+            forIndexPath: indexPath) as! PhotoViewCell
         let asset = assets[indexPath.row]
         cell.imageView.image = UIImage(CGImage: asset.thumbnail().takeUnretainedValue())
         cell.checked = contains(selectedAssets, asset)
@@ -122,7 +122,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     func collectionView(collectionView: UICollectionView,
         didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as PhotoViewCell
+        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! PhotoViewCell
         let asset = assets[indexPath.row]
         if let foundIndex = find(selectedAssets, asset) {
             selectedAssets.removeAtIndex(foundIndex)

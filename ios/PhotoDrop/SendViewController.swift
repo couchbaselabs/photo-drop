@@ -74,7 +74,7 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     // MARK: - Capture QR Code
 
     func startCaptureSession() {
-        let app = UIApplication.sharedApplication().delegate as AppDelegate
+        let app = UIApplication.sharedApplication().delegate as! AppDelegate
 
         let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         if device == nil {
@@ -84,7 +84,7 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
 
         var error: NSError?
         let input = AVCaptureDeviceInput.deviceInputWithDevice(device, error: &error)
-            as AVCaptureDeviceInput
+            as! AVCaptureDeviceInput
         if error == nil {
             session = AVCaptureSession()
             session.addInput(input)
@@ -94,7 +94,7 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
             output.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
 
             previewLayer = AVCaptureVideoPreviewLayer.layerWithSession(session)
-                as AVCaptureVideoPreviewLayer
+                as! AVCaptureVideoPreviewLayer
             previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
             previewLayer.frame = self.previewView.bounds
             self.previewView.layer.addSublayer(previewLayer)
@@ -115,10 +115,10 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
             return
         }
 
-        for metadata in metadataObjects as [AVMetadataObject] {
+        for metadata in metadataObjects as! [AVMetadataObject] {
             if metadata.type == AVMetadataObjectTypeQRCode {
                 let transformed = previewLayer.transformedMetadataObjectForMetadataObject(metadata)
-                    as AVMetadataMachineReadableCodeObject
+                    as! AVMetadataMachineReadableCodeObject
                 if let url = NSURL(string: transformed.stringValue) {
                     replicate(url)
                     session.stopRunning()
@@ -139,7 +139,7 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         var docIds: [String] = []
         for asset in sharedAssets! {
             let representation = asset.defaultRepresentation()
-            var bufferSize = UInt(Int(representation.size()))
+            var bufferSize = Int(representation.size())
             var buffer = UnsafeMutablePointer<UInt8>(malloc(bufferSize))
             var buffered = representation.getBytes(buffer, fromOffset: 0,
                 length: Int(representation.size()), error: nil)
