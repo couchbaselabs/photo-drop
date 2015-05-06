@@ -4,7 +4,9 @@ import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.media.Image;
+import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.text.format.Formatter;
 import android.widget.ImageView;
 
 import com.couchbase.lite.Attachment;
@@ -22,6 +24,8 @@ import com.google.zxing.common.BitMatrix;
 import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.util.EnumMap;
 import java.util.List;
 
@@ -29,6 +33,7 @@ public class ReceiverActivity extends Activity {
 
     private Manager manager;
     private Database database;
+    private LiteListener listener;
 
     private List<Bitmap> images;
 
@@ -49,8 +54,15 @@ public class ReceiverActivity extends Activity {
 
         startObserveDatabaseChange();
 
-        // call encode to display qr code
-        encode("http://google.com");
+        URL url = null;
+        try {
+            url = new URL("http", getLocalIpAddress(), listener.getListenPort(), "/db");
+        } catch (MalformedURLException e) {
+            e.printStackTrace();
+        }
+
+        System.out.println("the ip address is " + url.toString());
+        encode(url.toString());
     }
 
     void startObserveDatabaseChange() {
@@ -96,10 +108,14 @@ public class ReceiverActivity extends Activity {
     }
 
     void startListener() {
-        LiteListener listener = new LiteListener(manager, 5432, null);
-        int port = listener.getListenPort();
+        listener = new LiteListener(manager, 5432, null);
         Thread thread = new Thread(listener);
         thread.start();
+    }
+
+    public String getLocalIpAddress() {
+        WifiManager wm = (WifiManager) getSystemService(WIFI_SERVICE);
+        return Formatter.formatIpAddress(wm.getConnectionInfo().getIpAddress());
     }
 
     private void encode(String uniqueID) {
