@@ -1,0 +1,9 @@
+[submodule "android/libraries/couchbase-lite-java-listener"]
+	path = android/libraries/couchbase-lite-java-listener
+	url = https://github.com/couchbase/couchbase-lite-java-listener.git
+[submodule "android/libraries/couchbase-lite-java-core"]
+	path = android/libraries/couchbase-lite-java-core
+	url = https://github.com/couchbase/couchbase-lite-java-core.git
+[submodule "android/libraries/couchbase-lite-android"]
+	path = android/libraries/couchbase-lite-android
+	url = https://github.com/couchbase/couchbase-lite-android.git
