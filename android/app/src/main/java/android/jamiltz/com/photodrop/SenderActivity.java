@@ -18,7 +18,9 @@ import android.widget.ImageView;
 import com.couchbase.lite.CouchbaseLiteException;
 import com.couchbase.lite.Database;
 import com.couchbase.lite.Document;
+import com.couchbase.lite.Manager;
 import com.couchbase.lite.UnsavedRevision;
+import com.couchbase.lite.android.AndroidContext;
 import com.couchbase.lite.replicator.Replication;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.EncodeHintType;
@@ -29,6 +31,7 @@ import com.google.zxing.qrcode.QRCodeWriter;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -48,6 +51,8 @@ public class SenderActivity extends Activity implements ZBarScannerView.ResultHa
     private String TAG = "scanner";
     private ZBarScannerView mScannerView;
     public Parcelable[] uris;
+
+    private Manager manager;
     private Database database;
 
     @Override
@@ -58,7 +63,13 @@ public class SenderActivity extends Activity implements ZBarScannerView.ResultHa
 
         uris = getIntent().getParcelableArrayExtra("uris");
 
-        database = ((Application) this.getApplication()).getDatabase();
+        try {
+            manager = new Manager(new AndroidContext(getApplicationContext()), Manager.DEFAULT_OPTIONS);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        database = DatabaseHelper.getEmptyDatabase("db", manager);
 
     }
 
