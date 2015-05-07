@@ -61,7 +61,7 @@ public class ReceiverActivity extends Activity {
             e.printStackTrace();
         }
 
-        System.out.println("the ip address is " + url.toString());
+        System.out.println("Listening on :: " + url.toString());
         encode(url.toString());
     }
 
