@@ -5,6 +5,8 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.text.format.Formatter;
 import android.widget.ImageView;
 
@@ -25,6 +27,7 @@ import com.google.zxing.qrcode.QRCodeWriter;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
 
@@ -34,12 +37,25 @@ public class ReceiverActivity extends Activity {
     private Database database;
     private LiteListener listener;
 
-    private List<Bitmap> assets;
+    private RecyclerView mRecyclerView;
+    private RecyclerViewAdapter mAdapter;
+    private RecyclerView.LayoutManager mLayoutManager;
+
+    private List<Bitmap> assets = new ArrayList<Bitmap>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receive);
+        mRecyclerView = (RecyclerView) findViewById(R.id.recycler_view);
+
+        mRecyclerView.setHasFixedSize(true);
+
+        mLayoutManager = new LinearLayoutManager(this);
+        mRecyclerView.setLayoutManager(mLayoutManager);
+
+        mAdapter = new RecyclerViewAdapter(assets);
+        mRecyclerView.setAdapter(mAdapter);
 
         try {
             manager = new Manager(new AndroidContext(getApplicationContext()), Manager.DEFAULT_OPTIONS);
@@ -50,7 +66,6 @@ public class ReceiverActivity extends Activity {
         database = DatabaseHelper.getEmptyDatabase("db", manager);
 
         startListener();
-
         startObserveDatabaseChange();
 
         URL url = null;
@@ -68,14 +83,12 @@ public class ReceiverActivity extends Activity {
         database.addChangeListener(new Database.ChangeListener() {
             @Override
             public void changed(Database.ChangeEvent event) {
-
                 List<DocumentChange> changes = event.getChanges();
 
                 for (DocumentChange change : changes) {
                     System.out.println("Id of the changing doc " + change.getDocumentId());
                     saveImageFromDocument(change.getDocumentId());
                 }
-
             }
         });
     }
@@ -88,22 +101,20 @@ public class ReceiverActivity extends Activity {
         if (attachments != null && attachments.size() > 0) {
             Attachment attachment = attachments.get(0);
 
-            // convert to Bitmap
             try {
                 bitmap = BitmapFactory.decodeStream(attachment.getContent());
             } catch (CouchbaseLiteException e) {
                 e.printStackTrace();
             }
 
-            // add the image to the recycler view list
             assets.add(bitmap);
-
-            // the recycler view on the bottom part.
-
-            // call notifyDataInsert with the image
-
+            runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    mAdapter.updateList(assets);
+                }
+            });
         }
-
     }
 
     void startListener() {
