@@ -3,7 +3,6 @@ package android.jamiltz.com.photodrop;
 import android.app.Activity;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.media.Image;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.text.format.Formatter;
@@ -35,7 +34,7 @@ public class ReceiverActivity extends Activity {
     private Database database;
     private LiteListener listener;
 
-    private List<Bitmap> images;
+    private List<Bitmap> assets;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -74,14 +73,14 @@ public class ReceiverActivity extends Activity {
 
                 for (DocumentChange change : changes) {
                     System.out.println("Id of the changing doc " + change.getDocumentId());
-                    showImageFromDocument(change.getDocumentId());
+                    saveImageFromDocument(change.getDocumentId());
                 }
 
             }
         });
     }
 
-    void showImageFromDocument(String name) {
+    void saveImageFromDocument(String name) {
         Document document = database.getExistingDocument(name);
 
         Bitmap bitmap = null;
@@ -97,7 +96,7 @@ public class ReceiverActivity extends Activity {
             }
 
             // add the image to the recycler view list
-            images.add(bitmap);
+            assets.add(bitmap);
 
             // the recycler view on the bottom part.
 
