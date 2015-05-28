@@ -146,11 +146,9 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
     }
 
     func saveImageFromDocument(docId: String) {
-        let app = UIApplication.sharedApplication().delegate as! AppDelegate
         if let doc = database.existingDocumentWithID(docId) {
-            if doc.currentRevision.attachments.count > 0 {
-                let attachment = doc.currentRevision.attachments[0] as! CBLAttachment
-                if let image = UIImage(data: attachment.content)?.CGImage {
+            if let attachment = doc.currentRevision?.attachmentNamed("photo") {
+                if let image = UIImage(data: attachment.content!)?.CGImage {
                     let library = assetsLibrary()
                     library.writeImageDataToSavedPhotosAlbum(attachment.content, metadata: nil,
                         completionBlock: { (url: NSURL!, error: NSError!) -> Void in
