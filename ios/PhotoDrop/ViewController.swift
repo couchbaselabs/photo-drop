@@ -21,14 +21,23 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        NSNotificationCenter.defaultCenter().addObserverForName(
+            UIApplicationWillEnterForegroundNotification,
+            object: nil, queue: nil) { (notification) -> Void in
+                self.reloadAssets()
+        }
     }
 
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
 
         enableSendMode(false)
-        selectedAssets.removeAll(keepCapacity: false)
         reloadAssets()
+    }
+
+    override func viewWillDisappear(animated: Bool) {
+        super.viewWillDisappear(animated);
     }
 
     override func didReceiveMemoryWarning() {
@@ -68,7 +77,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             library = ALAssetsLibrary()
         }
 
-        assets.removeAll(keepCapacity: true)
+        assets = [];
+        selectedAssets = [];
+
         library.enumerateGroupsWithTypes(ALAssetsGroupSavedPhotos, usingBlock:
             { (group:ALAssetsGroup!, stop:UnsafeMutablePointer<ObjCBool>) -> Void in
                 if group != nil {
