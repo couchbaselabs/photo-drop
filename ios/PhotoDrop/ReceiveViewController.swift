@@ -11,6 +11,8 @@ import AssetsLibrary
 
 class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate {
 
+    let kRequiresAuthentication:Bool = false
+
     @IBOutlet weak var imageView: UIImageView!
 
     @IBOutlet weak var statusLabel: UILabel!
@@ -95,23 +97,20 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
         var error: NSError?
         listener = CBLListener(manager: CBLManager.sharedInstance(), port: 0)
 
-        listener.requiresAuth = true
-        let username = secureGenerateKey(NSCharacterSet.URLUserAllowedCharacterSet())
-        let password = secureGenerateKey(NSCharacterSet.URLPasswordAllowedCharacterSet())
-        listener.setPasswords([username : password])
+        var username: String?
+        var password: String?
+
+        listener.requiresAuth = kRequiresAuthentication
+        if listener.requiresAuth {
+            username = secureGenerateKey(NSCharacterSet.URLUserAllowedCharacterSet())
+            password = secureGenerateKey(NSCharacterSet.URLPasswordAllowedCharacterSet())
+            listener.setPasswords([username! : password!])
+        }
 
         var success = listener.start(&error)
         if success {
-            // Set a sync url with the generated username and password:
-            if let url = NSURL(string: database.name, relativeToURL: listener.URL) {
-                if let urlComp = NSURLComponents(string: url.absoluteString!) {
-                    urlComp.user = username
-                    urlComp.password = password
-                    syncUrl = urlComp.URL
-                }
-            }
-
-            // Start observing for database changes:
+            syncUrl = generateSyncUrl(listener.URL, username: username, password: password,
+                db: database.name)
             startObserveDatabaseChange()
             return true
         } else {
@@ -134,6 +133,17 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
         let key = data.base64EncodedStringWithOptions(
             NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
         return key.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters)!
+    }
+
+    func generateSyncUrl(base: NSURL, username: String?, password: String?, db: String) -> NSURL? {
+        if let url = NSURL(string: db, relativeToURL: base) {
+            if let urlComp = NSURLComponents(string: url.absoluteString!) {
+                urlComp.user = username
+                urlComp.password = password
+                return urlComp.URL
+            }
+        }
+        return nil
     }
 
     // MARK: - ALAssetsLibrary
