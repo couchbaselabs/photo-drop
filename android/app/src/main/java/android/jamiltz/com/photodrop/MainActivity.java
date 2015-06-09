@@ -55,20 +55,15 @@ public class MainActivity extends Activity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == INTENT_REQUEST_GET_IMAGES) {
-            Parcelable[] parcelableUris = data.getParcelableArrayExtra(ImagePickerActivity.EXTRA_IMAGE_URIS);
-
-            if(parcelableUris == null) {
+            if (data == null) {
                 return;
             }
+            Parcelable[] parcelableUris = data.getParcelableArrayExtra(ImagePickerActivity.EXTRA_IMAGE_URIS);
 
-            // show images using uris returned.
-
-            // open the sender activity, use an extra
+            // open the sender activity, use an extra to pass the image URIs
             Intent intent = new Intent(MainActivity.this, SenderActivity.class);
-            // pass the uris as extra
             intent.putExtra("uris", parcelableUris);
             startActivity(intent);
-
         }
     }
 
