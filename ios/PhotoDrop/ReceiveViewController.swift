@@ -25,7 +25,7 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
 
     var assets:[ALAsset] = []
     
-    var database: CBLDatabase!
+    var database: CBLDatabase?
 
     var syncUrl: NSURL!
 
@@ -33,11 +33,13 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
         super.viewDidLoad()
         
         collectionView.hidden = true;
-        
-        var error: NSError?
-        database = DatabaseUtil.getEmptyDatabase("db", error: &error)
-        if error != nil {
-            AppDelegate.showMessage("Cannot get a database with error : \(error!.code)", title: "Error")
+
+        do {
+            database = try DatabaseUtil.getEmptyDatabase("db")
+        } catch let error as NSError {
+            database = nil
+            AppDelegate.showMessage("Cannot get a database with error : \(error.code)",
+                title: "Error")
         }
     }
 
@@ -65,9 +67,10 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
         stopListener()
         
         if database != nil {
-            var error: NSError?
-            if !database.deleteDatabase(&error) {
-                NSLog("Cannot delete the database with error : ", error!.description)
+            do {
+                try database!.deleteDatabase()
+            } catch let error as NSError {
+                NSLog("Cannot delete the database with error : ", error.description)
             }
         }
     }
@@ -94,7 +97,10 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
             return true
         }
 
-        var error: NSError?
+        if database == nil {
+            return false
+        }
+
         listener = CBLListener(manager: CBLManager.sharedInstance(), port: 0)
 
         var username: String?
@@ -107,10 +113,17 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
             listener.setPasswords([username! : password!])
         }
 
-        var success = listener.start(&error)
+        var success: Bool
+        do {
+            try listener.start()
+            success = true
+        } catch {
+            success = false
+        }
+
         if success {
             syncUrl = generateSyncUrl(listener.URL, username: username, password: password,
-                db: database.name)
+                db: database!.name)
             startObserveDatabaseChange()
             return true
         } else {
@@ -137,7 +150,7 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
 
     func generateSyncUrl(base: NSURL, username: String?, password: String?, db: String) -> NSURL? {
         if let url = NSURL(string: db, relativeToURL: base) {
-            if let urlComp = NSURLComponents(string: url.absoluteString!) {
+            if let urlComp = NSURLComponents(string: url.absoluteString) {
                 urlComp.user = username
                 urlComp.password = password
                 return urlComp.URL
@@ -156,12 +169,15 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
     }
 
     func saveImageFromDocument(docId: String) {
-        if let doc = database.existingDocumentWithID(docId) {
+        if database == nil {
+            return
+        }
+
+        if let doc = database!.existingDocumentWithID(docId) {
             if let attachment = doc.currentRevision?.attachmentNamed("photo") {
-                if let image = UIImage(data: attachment.content!)?.CGImage {
-                    let library = assetsLibrary()
-                    library.writeImageDataToSavedPhotosAlbum(attachment.content, metadata: nil,
-                        completionBlock: { (url: NSURL!, error: NSError!) -> Void in
+                let library = assetsLibrary()
+                library.writeImageDataToSavedPhotosAlbum(attachment.content, metadata: nil,
+                    completionBlock: { (url: NSURL!, error: NSError!) -> Void in
                         if url != nil {
                             library.assetForURL(url, resultBlock:
                                 {(asset: ALAsset!) -> Void in
@@ -174,8 +190,7 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
                                 {(error: NSError!) -> Void in
                             }
                         }
-                    })
-                }
+                })
             }
         }
     }
@@ -219,7 +234,6 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
             cell.imageView.image = UIImage(CGImage: asset.thumbnail().takeUnretainedValue())
             return cell
     }
-
 
     func collectionView(collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,

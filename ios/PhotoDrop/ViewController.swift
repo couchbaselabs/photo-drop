@@ -113,7 +113,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
             forIndexPath: indexPath) as! PhotoViewCell
         let asset = assets[indexPath.row]
         cell.imageView.image = UIImage(CGImage: asset.thumbnail().takeUnretainedValue())
-        cell.checked = contains(selectedAssets, asset)
+        cell.checked = selectedAssets.contains(asset)
         return cell
     }
 
@@ -135,7 +135,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         didSelectItemAtIndexPath indexPath: NSIndexPath) {
         let cell = collectionView.cellForItemAtIndexPath(indexPath) as! PhotoViewCell
         let asset = assets[indexPath.row]
-        if let foundIndex = find(selectedAssets, asset) {
+        if let foundIndex = selectedAssets.indexOf(asset) {
             selectedAssets.removeAtIndex(foundIndex)
             cell.checked = false
         } else {

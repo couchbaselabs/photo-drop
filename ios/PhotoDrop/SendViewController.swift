@@ -22,15 +22,17 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
 
     var sharedAssets:[ALAsset]?
     
-    var database: CBLDatabase!
+    var database: CBLDatabase?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        var error: NSError?
-        database = DatabaseUtil.getEmptyDatabase("db", error: &error)
-        if error != nil {
-            AppDelegate.showMessage("Cannot get a database with error : \(error!.code)", title: "Error")
+
+        do {
+            database = try DatabaseUtil.getEmptyDatabase("db")
+        } catch let error as NSError {
+            database = nil
+            AppDelegate.showMessage("Cannot get a database with error : \(error.code)",
+                title: "Error")
         }
     }
 
@@ -46,9 +48,10 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         super.viewDidDisappear(animated)
         
         if database != nil {
-            var error: NSError?
-            if !database.deleteDatabase(&error) {
-                NSLog("Cannot delete the database with error : ", error!.description)
+            do {
+                try database!.deleteDatabase()
+            } catch let error as NSError {
+                NSLog("Cannot delete the database with error : ", error.description)
             }
         }
     }
@@ -74,33 +77,30 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     // MARK: - Capture QR Code
 
     func startCaptureSession() {
-        let app = UIApplication.sharedApplication().delegate as! AppDelegate
-
         let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
         if device == nil {
             AppDelegate.showMessage("No video capture devices found", title: "")
             return
         }
 
-        var error: NSError?
-        let input = AVCaptureDeviceInput.deviceInputWithDevice(device, error: &error)
-            as! AVCaptureDeviceInput
-        if error == nil {
+        do {
+            let input = try AVCaptureDeviceInput(device: device)
             session = AVCaptureSession()
             session.addInput(input)
+            
             let output = AVCaptureMetadataOutput()
             output.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
             session.addOutput(output)
             output.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
 
-            previewLayer = AVCaptureVideoPreviewLayer.layerWithSession(session)
-                as! AVCaptureVideoPreviewLayer
+            previewLayer = AVCaptureVideoPreviewLayer(session: session)
+                as AVCaptureVideoPreviewLayer
             previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
             previewLayer.frame = self.previewView.bounds
             self.previewView.layer.addSublayer(previewLayer)
 
             session.startRunning()
-        } else {
+        } catch {
             AppDelegate.showMessage("Cannot start QRCode capture session", title: "Error")
         }
     }
@@ -132,6 +132,10 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     // MARK: - Replication
 
     func replicate(url: NSURL) {
+        if database == nil {
+            return
+        }
+
         self.previewView.hidden = true;
         self.statusLabel.text = "Sending Photos ..."
         UIApplication.sharedApplication().networkActivityIndicatorVisible = true
@@ -139,32 +143,33 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         var docIds: [String] = []
         for asset in sharedAssets! {
             let representation = asset.defaultRepresentation()
-            var bufferSize = Int(representation.size())
-            var buffer = UnsafeMutablePointer<UInt8>(malloc(bufferSize))
-            var buffered = representation.getBytes(buffer, fromOffset: 0,
+            let bufferSize = Int(representation.size())
+            let buffer = UnsafeMutablePointer<UInt8>(malloc(bufferSize))
+            let buffered = representation.getBytes(buffer, fromOffset: 0,
                 length: Int(representation.size()), error: nil)
-            var data = NSData(bytesNoCopy: buffer, length: buffered, freeWhenDone: true)
+            let data = NSData(bytesNoCopy: buffer, length: buffered, freeWhenDone: true)
 
-            var error: NSError?
-            let doc = database.createDocument()
+            let doc = database!.createDocument()
             let rev = doc.newRevision()
-            rev.setAttachmentNamed("photo", withContentType: "application/octet-stream", content: data)
-            let saved = rev.save(&error)
-
-            if saved != nil {
+            rev.setAttachmentNamed("photo", withContentType: "application/octet-stream",
+                content: data)
+            do {
+                try rev.save()
                 docIds.append(doc.documentID)
+            } catch let error as NSError {
+                NSLog("Cannot save document: %@", error)
             }
         }
 
         if docIds.count > 0 {
-            replicator = database.createPushReplication(url)
+            replicator = database!.createPushReplication(url)
             replicator.documentIDs = docIds
 
             NSNotificationCenter.defaultCenter().addObserverForName(kCBLReplicationChangeNotification,
                 object: replicator, queue: nil) { (notification) -> Void in
                     if self.replicator.lastError == nil {
-                        var totalCount = self.replicator.changesCount
-                        var completedCount = self.replicator.completedChangesCount
+                        let totalCount = self.replicator.changesCount
+                        let completedCount = self.replicator.completedChangesCount
                         if completedCount > 0 && completedCount == totalCount {
                             self.statusLabel.text = "Sending Completed"
                             UIApplication.sharedApplication().networkActivityIndicatorVisible = false
