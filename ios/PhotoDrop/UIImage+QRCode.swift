@@ -19,13 +19,13 @@ extension UIImage {
             let outputImage = filter.outputImage
 
             // Resize Image
-            let cgImage = CIContext(options: nil).createCGImage(outputImage,
-                fromRect: outputImage.extent)
+            let cgImage = CIContext(options: nil).createCGImage(outputImage!,
+                fromRect: outputImage!.extent)
             let scale = UIScreen.mainScreen().scale
 
             UIGraphicsBeginImageContext(CGSizeMake(size.width * scale, size.height))
             let context = UIGraphicsGetCurrentContext()
-            CGContextSetInterpolationQuality(context, kCGInterpolationNone)
+            CGContextSetInterpolationQuality(context, CGInterpolationQuality.None);
             CGContextDrawImage(context, CGContextGetClipBoundingBox(context), cgImage)
             let resizedImage = UIGraphicsGetImageFromCurrentImageContext()
             UIGraphicsEndImageContext()
