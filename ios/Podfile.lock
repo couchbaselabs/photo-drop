@@ -1,0 +1,15 @@
+PODS:
+  - couchbase-lite-ios (1.1.1):
+    - couchbase-lite-ios/Core (= 1.1.1)
+  - couchbase-lite-ios/Core (1.1.1)
+  - couchbase-lite-ios/Listener (1.1.1):
+    - couchbase-lite-ios/Core
+
+DEPENDENCIES:
+  - couchbase-lite-ios (~> 1.1.1)
+  - couchbase-lite-ios/Listener (~> 1.1.1)
+
+SPEC CHECKSUMS:
+  couchbase-lite-ios: 4ada0c645e1c72ded94296f732e6cdf58e8a7811
+
+COCOAPODS: 0.39.0.beta.4
