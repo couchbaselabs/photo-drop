@@ -43,7 +43,8 @@ dependencies {
 
     compile 'net.the4thdimension:poly-picker:1.0.11'
 
-    compile project(':libraries:couchbase-lite-android')
-    compile project(':libraries:couchbase-lite-java-listener')
+    compile 'com.couchbase.lite:couchbase-lite-android:1.1.0'
+    compile 'com.couchbase.lite:couchbase-lite-java-listener:1.1.0'
+    compile 'com.couchbase.lite:couchbase-lite-java-core:1.1.0'
     compile 'com.kbeanie:image-chooser-library:1.4.3@aar'
 }
