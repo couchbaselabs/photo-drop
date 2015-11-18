@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		140059282CFCE3BFC0133A6A /* libPods-PhotoDrop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD89DD3039AB3CB00D40F444 /* libPods-PhotoDrop.a */; };
 		932850091A23C16B007B434F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932850081A23C16B007B434F /* AppDelegate.swift */; };
 		9328500B1A23C16B007B434F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328500A1A23C16B007B434F /* ViewController.swift */; };
 		9328500E1A23C16B007B434F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9328500C1A23C16B007B434F /* Main.storyboard */; };
@@ -17,16 +18,8 @@
 		9328502C1A23C23E007B434F /* ReceiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932850291A23C23E007B434F /* ReceiveViewController.swift */; };
 		9328502D1A23C23E007B434F /* PhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328502A1A23C23E007B434F /* PhotoViewCell.swift */; };
 		9328502F1A23C250007B434F /* UIImage+QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328502E1A23C250007B434F /* UIImage+QRCode.swift */; };
-		932850371A23C2F5007B434F /* CouchbaseLite.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932850351A23C2F5007B434F /* CouchbaseLite.framework */; };
-		932850381A23C2F5007B434F /* CouchbaseLiteListener.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932850361A23C2F5007B434F /* CouchbaseLiteListener.framework */; };
 		9328503F1A23C336007B434F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932850391A23C336007B434F /* AVFoundation.framework */; };
-		932850401A23C336007B434F /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9328503A1A23C336007B434F /* CFNetwork.framework */; };
-		932850411A23C336007B434F /* libc++.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9328503B1A23C336007B434F /* libc++.dylib */; };
-		932850421A23C336007B434F /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 9328503C1A23C336007B434F /* libsqlite3.dylib */; };
-		932850431A23C336007B434F /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9328503D1A23C336007B434F /* Security.framework */; };
-		932850441A23C336007B434F /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9328503E1A23C336007B434F /* SystemConfiguration.framework */; };
 		932850471A23C360007B434F /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932850451A23C360007B434F /* AssetsLibrary.framework */; };
-		932850481A23C360007B434F /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 932850461A23C360007B434F /* libz.dylib */; };
 		9359892A1A6CC434007E5F7E /* DatabaseUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935989291A6CC434007E5F7E /* DatabaseUtil.swift */; };
 /* End PBXBuildFile section */
 
@@ -41,6 +34,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8A2E66C4F8158D9DA68F1636 /* Pods-PhotoDrop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoDrop.release.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoDrop/Pods-PhotoDrop.release.xcconfig"; sourceTree = "<group>"; };
 		932850031A23C16B007B434F /* PhotoDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		932850071A23C16B007B434F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		932850081A23C16B007B434F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -56,17 +50,11 @@
 		9328502A1A23C23E007B434F /* PhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewCell.swift; sourceTree = "<group>"; };
 		9328502E1A23C250007B434F /* UIImage+QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+QRCode.swift"; sourceTree = "<group>"; };
 		932850301A23C267007B434F /* PhotoDrop-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "PhotoDrop-Bridging-Header.h"; sourceTree = "<group>"; };
-		932850351A23C2F5007B434F /* CouchbaseLite.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLite.framework; sourceTree = "<group>"; };
-		932850361A23C2F5007B434F /* CouchbaseLiteListener.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CouchbaseLiteListener.framework; sourceTree = "<group>"; };
 		932850391A23C336007B434F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
-		9328503A1A23C336007B434F /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
-		9328503B1A23C336007B434F /* libc++.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = "libc++.dylib"; path = "usr/lib/libc++.dylib"; sourceTree = SDKROOT; };
-		9328503C1A23C336007B434F /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		9328503D1A23C336007B434F /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		9328503E1A23C336007B434F /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		932850451A23C360007B434F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
-		932850461A23C360007B434F /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		935989291A6CC434007E5F7E /* DatabaseUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseUtil.swift; sourceTree = "<group>"; };
+		BD89DD3039AB3CB00D40F444 /* libPods-PhotoDrop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PhotoDrop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		D94260F251CAEC899D996411 /* Pods-PhotoDrop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoDrop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoDrop/Pods-PhotoDrop.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -75,15 +63,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				932850471A23C360007B434F /* AssetsLibrary.framework in Frameworks */,
-				932850481A23C360007B434F /* libz.dylib in Frameworks */,
 				9328503F1A23C336007B434F /* AVFoundation.framework in Frameworks */,
-				932850401A23C336007B434F /* CFNetwork.framework in Frameworks */,
-				932850411A23C336007B434F /* libc++.dylib in Frameworks */,
-				932850421A23C336007B434F /* libsqlite3.dylib in Frameworks */,
-				932850431A23C336007B434F /* Security.framework in Frameworks */,
-				932850441A23C336007B434F /* SystemConfiguration.framework in Frameworks */,
-				932850381A23C2F5007B434F /* CouchbaseLiteListener.framework in Frameworks */,
-				932850371A23C2F5007B434F /* CouchbaseLite.framework in Frameworks */,
+				140059282CFCE3BFC0133A6A /* libPods-PhotoDrop.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,6 +78,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		38E839C8E8B7A798ECDFF7D4 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D94260F251CAEC899D996411 /* Pods-PhotoDrop.debug.xcconfig */,
+				8A2E66C4F8158D9DA68F1636 /* Pods-PhotoDrop.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		93284FFA1A23C16B007B434F = {
 			isa = PBXGroup;
 			children = (
@@ -104,6 +94,7 @@
 				9328501B1A23C16B007B434F /* PhotoDropTests */,
 				932850041A23C16B007B434F /* Products */,
 				932850341A23C2F5007B434F /* Frameworks */,
+				38E839C8E8B7A798ECDFF7D4 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -164,15 +155,8 @@
 			isa = PBXGroup;
 			children = (
 				932850451A23C360007B434F /* AssetsLibrary.framework */,
-				932850461A23C360007B434F /* libz.dylib */,
 				932850391A23C336007B434F /* AVFoundation.framework */,
-				9328503A1A23C336007B434F /* CFNetwork.framework */,
-				9328503B1A23C336007B434F /* libc++.dylib */,
-				9328503C1A23C336007B434F /* libsqlite3.dylib */,
-				9328503D1A23C336007B434F /* Security.framework */,
-				9328503E1A23C336007B434F /* SystemConfiguration.framework */,
-				932850351A23C2F5007B434F /* CouchbaseLite.framework */,
-				932850361A23C2F5007B434F /* CouchbaseLiteListener.framework */,
+				BD89DD3039AB3CB00D40F444 /* libPods-PhotoDrop.a */,
 			);
 			path = Frameworks;
 			sourceTree = "<group>";
@@ -184,9 +168,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 932850221A23C16B007B434F /* Build configuration list for PBXNativeTarget "PhotoDrop" */;
 			buildPhases = (
+				D285E8B728E6ED8F7433E2D7 /* Check Pods Manifest.lock */,
 				93284FFF1A23C16B007B434F /* Sources */,
 				932850001A23C16B007B434F /* Frameworks */,
 				932850011A23C16B007B434F /* Resources */,
+				7903D3DF274034091ADA8F7D /* Embed Pods Frameworks */,
+				FA3C1A2F8936DCB381B6CE0B /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -221,7 +208,8 @@
 		93284FFB1A23C16B007B434F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0610;
+				LastSwiftUpdateCheck = 0700;
+				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = Couchbase;
 				TargetAttributes = {
 					932850021A23C16B007B434F = {
@@ -271,6 +259,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7903D3DF274034091ADA8F7D /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PhotoDrop/Pods-PhotoDrop-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D285E8B728E6ED8F7433E2D7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		FA3C1A2F8936DCB381B6CE0B /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PhotoDrop/Pods-PhotoDrop-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		93284FFF1A23C16B007B434F /* Sources */ = {
@@ -345,6 +381,7 @@
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -404,10 +441,12 @@
 		};
 		932850231A23C16B007B434F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D94260F251CAEC899D996411 /* Pods-PhotoDrop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -415,7 +454,7 @@
 				INFOPLIST_FILE = PhotoDrop/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.couchbase.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "PhotoDrop/PhotoDrop-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -424,10 +463,12 @@
 		};
 		932850241A23C16B007B434F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8A2E66C4F8158D9DA68F1636 /* Pods-PhotoDrop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
@@ -435,7 +476,7 @@
 				INFOPLIST_FILE = PhotoDrop/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.couchbase.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "PhotoDrop/PhotoDrop-Bridging-Header.h";
 			};
@@ -455,6 +496,7 @@
 				);
 				INFOPLIST_FILE = PhotoDropTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.couchbase.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhotoDrop.app/PhotoDrop";
 			};
@@ -470,6 +512,7 @@
 				);
 				INFOPLIST_FILE = PhotoDropTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.couchbase.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhotoDrop.app/PhotoDrop";
 			};

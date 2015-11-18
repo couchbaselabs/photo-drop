@@ -1,0 +1,14 @@
+# Uncomment this line to define a global platform for your project
+# platform :ios, '6.0'
+
+target 'PhotoDrop' do
+
+pod 'couchbase-lite-ios', '~> 1.1.1'
+pod 'couchbase-lite-ios/Listener', '~> 1.1.1'
+
+end
+
+target 'PhotoDropTests' do
+
+end
+

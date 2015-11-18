@@ -5,7 +5,7 @@ PhotoDrop iOS
 
 ## Build & Run
 
-Run the app using [Xcode 6.3](https://developer.apple.com/xcode/downloads/) or higher. It supports Swift 1.2.
+Run the app using [Xcode 7](https://developer.apple.com/xcode/downloads/) or higher. It supports Swift 2.
 
 1. Clone this repository.
 
@@ -13,10 +13,9 @@ Run the app using [Xcode 6.3](https://developer.apple.com/xcode/downloads/) or h
  $ git clone https://github.com/couchbaselabs/photo-drop
  ```
 2. Go into the ios folder.
-3. Download [Couchbase Lite iOS][CBL_DOWNLOAD] and extract the zip file.
-4. Copy `CouchbaseLite.framework` and `CouchbaseLiteListener.framework` into the `Frameworks` directory of this repo.
-5. Open PhotoDrop.xcodeproj.
-6. Click the Run button.
+3. Run `pod install` to install Couchbase Lite and Couchbase Lite Listener in the project.
+4. Open PhotoDrop.xcworkspace.
+5. Click the Run button.
 
 Feel free to [open an issue](https://github.com/couchbaselabs/photo-drop/issues/new) to report bugs and improve 
 PhotoDrop iOS.
