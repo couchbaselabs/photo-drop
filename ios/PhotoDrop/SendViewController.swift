@@ -36,7 +36,7 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         }
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if database != nil && session == nil {
@@ -44,12 +44,12 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         }
     }
 
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         if database != nil {
             do {
-                try database!.deleteDatabase()
+                try database!.delete()
             } catch let error as NSError {
                 NSLog("Cannot delete the database with error : ", error.description)
             }
@@ -62,14 +62,14 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
 
     // MARK: - Action
 
-    @IBAction func cancelAction(sender: AnyObject) {
-        self.navigationController?.dismissViewControllerAnimated(true,
+    @IBAction func cancelAction(_ sender: AnyObject) {
+        self.navigationController?.dismiss(animated: true,
             completion: { () -> Void in
                 if self.replicator != nil {
                     self.replicator.stop()
-                    NSNotificationCenter.defaultCenter().removeObserver(self,
-                        name: kCBLReplicationChangeNotification, object: self.replicator)
-                    UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                    NotificationCenter.default.removeObserver(self,
+                        name: NSNotification.Name.cblReplicationChange, object: self.replicator)
+                    UIApplication.shared.isNetworkActivityIndicatorVisible = false
                 }
         })
     }
@@ -77,7 +77,7 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     // MARK: - Capture QR Code
 
     func startCaptureSession() {
-        let device = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeVideo)
+        let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
         if device == nil {
             AppDelegate.showMessage("No video capture devices found", title: "")
             return
@@ -89,7 +89,7 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
             session.addInput(input)
             
             let output = AVCaptureMetadataOutput()
-            output.setMetadataObjectsDelegate(self, queue: dispatch_get_main_queue())
+            output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             session.addOutput(output)
             output.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
 
@@ -107,9 +107,9 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
 
     // MARK: - AVCaptureMetadataOutputObjectsDelegate
 
-    func captureOutput(captureOutput: AVCaptureOutput!,
-        didOutputMetadataObjects metadataObjects: [AnyObject]!,
-        fromConnection connection: AVCaptureConnection!) {
+    func captureOutput(_ captureOutput: AVCaptureOutput!,
+        didOutputMetadataObjects metadataObjects: [Any]!,
+        from connection: AVCaptureConnection!) {
         if session == nil {
             // Workaround for iOS7 bugs
             return
@@ -117,9 +117,9 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
 
         for metadata in metadataObjects as! [AVMetadataObject] {
             if metadata.type == AVMetadataObjectTypeQRCode {
-                let transformed = previewLayer.transformedMetadataObjectForMetadataObject(metadata)
+                let transformed = previewLayer.transformedMetadataObject(for: metadata)
                     as! AVMetadataMachineReadableCodeObject
-                if let url = NSURL(string: transformed.stringValue) {
+                if let url = URL(string: transformed.stringValue) {
                     replicate(url)
                     session.stopRunning()
                     session = nil
@@ -131,23 +131,23 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
 
     // MARK: - Replication
 
-    func replicate(url: NSURL) {
+    func replicate(_ url: URL) {
         if database == nil {
             return
         }
 
-        self.previewView.hidden = true;
+        self.previewView.isHidden = true;
         self.statusLabel.text = "Sending Photos ..."
-        UIApplication.sharedApplication().networkActivityIndicatorVisible = true
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
         var docIds: [String] = []
         for asset in sharedAssets! {
             let representation = asset.defaultRepresentation()
-            let bufferSize = Int(representation.size())
-            let buffer = UnsafeMutablePointer<UInt8>(malloc(bufferSize))
-            let buffered = representation.getBytes(buffer, fromOffset: 0,
-                length: Int(representation.size()), error: nil)
-            let data = NSData(bytesNoCopy: buffer, length: buffered, freeWhenDone: true)
+            let bufferSize = Int(representation?.size() ?? 0)
+            let buffer = UnsafeMutablePointer<UInt8>.allocate(capacity:bufferSize)
+            let buffered = representation?.getBytes(buffer, fromOffset: 0,
+                length: Int(representation?.size() ?? 0), error: nil) ?? 0
+            let data = Data(bytesNoCopy: UnsafeMutablePointer<UInt8>(buffer), count: buffered, deallocator: .free)
 
             let doc = database!.createDocument()
             let rev = doc.newRevision()
@@ -165,18 +165,18 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
             replicator = database!.createPushReplication(url)
             replicator.documentIDs = docIds
 
-            NSNotificationCenter.defaultCenter().addObserverForName(kCBLReplicationChangeNotification,
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.cblReplicationChange,
                 object: replicator, queue: nil) { (notification) -> Void in
                     if self.replicator.lastError == nil {
                         let totalCount = self.replicator.changesCount
                         let completedCount = self.replicator.completedChangesCount
                         if completedCount > 0 && completedCount == totalCount {
                             self.statusLabel.text = "Sending Completed"
-                            UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                            UIApplication.shared.isNetworkActivityIndicatorVisible = false
                         }
                     } else {
                         self.statusLabel.text = "Sending Abort"
-                        UIApplication.sharedApplication().networkActivityIndicatorVisible = false
+                        UIApplication.shared.isNetworkActivityIndicatorVisible = false
                     }
             }
             replicator.start()

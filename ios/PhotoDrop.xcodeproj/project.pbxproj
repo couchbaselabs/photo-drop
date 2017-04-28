@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		140059282CFCE3BFC0133A6A /* libPods-PhotoDrop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = BD89DD3039AB3CB00D40F444 /* libPods-PhotoDrop.a */; };
+		46570AEF62A01F7E4E06D702 /* libPods-PhotoDropTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 28D86A78C15B47813DACB903 /* libPods-PhotoDropTests.a */; };
 		932850091A23C16B007B434F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 932850081A23C16B007B434F /* AppDelegate.swift */; };
 		9328500B1A23C16B007B434F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9328500A1A23C16B007B434F /* ViewController.swift */; };
 		9328500E1A23C16B007B434F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9328500C1A23C16B007B434F /* Main.storyboard */; };
@@ -21,6 +21,7 @@
 		9328503F1A23C336007B434F /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932850391A23C336007B434F /* AVFoundation.framework */; };
 		932850471A23C360007B434F /* AssetsLibrary.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 932850451A23C360007B434F /* AssetsLibrary.framework */; };
 		9359892A1A6CC434007E5F7E /* DatabaseUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 935989291A6CC434007E5F7E /* DatabaseUtil.swift */; };
+		EA823FE1138E30E1BCB1D3C4 /* libPods-PhotoDrop.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B92BBC1B189BA12C9E8ADC0 /* libPods-PhotoDrop.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -34,7 +35,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		8A2E66C4F8158D9DA68F1636 /* Pods-PhotoDrop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoDrop.release.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoDrop/Pods-PhotoDrop.release.xcconfig"; sourceTree = "<group>"; };
+		28D86A78C15B47813DACB903 /* libPods-PhotoDropTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PhotoDropTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		38F9191AEE13FA8821D5DB59 /* Pods-PhotoDropTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoDropTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoDropTests/Pods-PhotoDropTests.release.xcconfig"; sourceTree = "<group>"; };
+		7B92BBC1B189BA12C9E8ADC0 /* libPods-PhotoDrop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PhotoDrop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		932850031A23C16B007B434F /* PhotoDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		932850071A23C16B007B434F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		932850081A23C16B007B434F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -53,8 +56,9 @@
 		932850391A23C336007B434F /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		932850451A23C360007B434F /* AssetsLibrary.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AssetsLibrary.framework; path = System/Library/Frameworks/AssetsLibrary.framework; sourceTree = SDKROOT; };
 		935989291A6CC434007E5F7E /* DatabaseUtil.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatabaseUtil.swift; sourceTree = "<group>"; };
-		BD89DD3039AB3CB00D40F444 /* libPods-PhotoDrop.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-PhotoDrop.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		D94260F251CAEC899D996411 /* Pods-PhotoDrop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoDrop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoDrop/Pods-PhotoDrop.debug.xcconfig"; sourceTree = "<group>"; };
+		BEC699A107B14F7F1136D508 /* Pods-PhotoDropTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoDropTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoDropTests/Pods-PhotoDropTests.debug.xcconfig"; sourceTree = "<group>"; };
+		CA285ED2C3EEAC88CD200FC1 /* Pods-PhotoDrop.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoDrop.debug.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoDrop/Pods-PhotoDrop.debug.xcconfig"; sourceTree = "<group>"; };
+		DFAFA00A35B16F3AB9394F3F /* Pods-PhotoDrop.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PhotoDrop.release.xcconfig"; path = "Pods/Target Support Files/Pods-PhotoDrop/Pods-PhotoDrop.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +68,7 @@
 			files = (
 				932850471A23C360007B434F /* AssetsLibrary.framework in Frameworks */,
 				9328503F1A23C336007B434F /* AVFoundation.framework in Frameworks */,
-				140059282CFCE3BFC0133A6A /* libPods-PhotoDrop.a in Frameworks */,
+				EA823FE1138E30E1BCB1D3C4 /* libPods-PhotoDrop.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,21 +76,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				46570AEF62A01F7E4E06D702 /* libPods-PhotoDropTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		38E839C8E8B7A798ECDFF7D4 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				D94260F251CAEC899D996411 /* Pods-PhotoDrop.debug.xcconfig */,
-				8A2E66C4F8158D9DA68F1636 /* Pods-PhotoDrop.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 		93284FFA1A23C16B007B434F = {
 			isa = PBXGroup;
 			children = (
@@ -94,7 +90,7 @@
 				9328501B1A23C16B007B434F /* PhotoDropTests */,
 				932850041A23C16B007B434F /* Products */,
 				932850341A23C2F5007B434F /* Frameworks */,
-				38E839C8E8B7A798ECDFF7D4 /* Pods */,
+				99D0E5C38720485D9FDB4D08 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -156,9 +152,21 @@
 			children = (
 				932850451A23C360007B434F /* AssetsLibrary.framework */,
 				932850391A23C336007B434F /* AVFoundation.framework */,
-				BD89DD3039AB3CB00D40F444 /* libPods-PhotoDrop.a */,
+				7B92BBC1B189BA12C9E8ADC0 /* libPods-PhotoDrop.a */,
+				28D86A78C15B47813DACB903 /* libPods-PhotoDropTests.a */,
 			);
 			path = Frameworks;
+			sourceTree = "<group>";
+		};
+		99D0E5C38720485D9FDB4D08 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CA285ED2C3EEAC88CD200FC1 /* Pods-PhotoDrop.debug.xcconfig */,
+				DFAFA00A35B16F3AB9394F3F /* Pods-PhotoDrop.release.xcconfig */,
+				BEC699A107B14F7F1136D508 /* Pods-PhotoDropTests.debug.xcconfig */,
+				38F9191AEE13FA8821D5DB59 /* Pods-PhotoDropTests.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -168,12 +176,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 932850221A23C16B007B434F /* Build configuration list for PBXNativeTarget "PhotoDrop" */;
 			buildPhases = (
-				D285E8B728E6ED8F7433E2D7 /* Check Pods Manifest.lock */,
+				4849ECC8AF99F1038737997C /* [CP] Check Pods Manifest.lock */,
 				93284FFF1A23C16B007B434F /* Sources */,
 				932850001A23C16B007B434F /* Frameworks */,
 				932850011A23C16B007B434F /* Resources */,
-				7903D3DF274034091ADA8F7D /* Embed Pods Frameworks */,
-				FA3C1A2F8936DCB381B6CE0B /* Copy Pods Resources */,
+				9D626D43F7BD704DF5041986 /* [CP] Embed Pods Frameworks */,
+				E1A1948A53AADC9279E90CB9 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -188,9 +196,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 932850251A23C16B007B434F /* Build configuration list for PBXNativeTarget "PhotoDropTests" */;
 			buildPhases = (
+				1D49E0E9B7A6A9F375BC7F09 /* [CP] Check Pods Manifest.lock */,
 				932850141A23C16B007B434F /* Sources */,
 				932850151A23C16B007B434F /* Frameworks */,
 				932850161A23C16B007B434F /* Resources */,
+				0D42B7F13106B4CDE65CA590 /* [CP] Embed Pods Frameworks */,
+				93B9715999E170D8D2AAE8FE /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -214,9 +225,12 @@
 				TargetAttributes = {
 					932850021A23C16B007B434F = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = T97TEF42TA;
+						LastSwiftMigration = 0830;
 					};
 					932850171A23C16B007B434F = {
 						CreatedOnToolsVersion = 6.1;
+						LastSwiftMigration = 0830;
 						TestTargetID = 932850021A23C16B007B434F;
 					};
 				};
@@ -261,14 +275,74 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		7903D3DF274034091ADA8F7D /* Embed Pods Frameworks */ = {
+		0D42B7F13106B4CDE65CA590 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PhotoDropTests/Pods-PhotoDropTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		1D49E0E9B7A6A9F375BC7F09 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		4849ECC8AF99F1038737997C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		93B9715999E170D8D2AAE8FE /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PhotoDropTests/Pods-PhotoDropTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		9D626D43F7BD704DF5041986 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,29 +350,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-PhotoDrop/Pods-PhotoDrop-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D285E8B728E6ED8F7433E2D7 /* Check Pods Manifest.lock */ = {
+		E1A1948A53AADC9279E90CB9 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		FA3C1A2F8936DCB381B6CE0B /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -396,7 +455,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -432,7 +491,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -441,49 +500,54 @@
 		};
 		932850231A23C16B007B434F /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D94260F251CAEC899D996411 /* Pods-PhotoDrop.debug.xcconfig */;
+			baseConfigurationReference = CA285ED2C3EEAC88CD200FC1 /* Pods-PhotoDrop.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = T97TEF42TA;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = PhotoDrop/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.couchbase.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "PhotoDrop/PhotoDrop-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
 		932850241A23C16B007B434F /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8A2E66C4F8158D9DA68F1636 /* Pods-PhotoDrop.release.xcconfig */;
+			baseConfigurationReference = DFAFA00A35B16F3AB9394F3F /* Pods-PhotoDrop.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
+				DEVELOPMENT_TEAM = T97TEF42TA;
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Frameworks",
 				);
 				INFOPLIST_FILE = PhotoDrop/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.couchbase.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "PhotoDrop/PhotoDrop-Bridging-Header.h";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
 		};
 		932850261A23C16B007B434F /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = BEC699A107B14F7F1136D508 /* Pods-PhotoDropTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -498,12 +562,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.couchbase.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhotoDrop.app/PhotoDrop";
 			};
 			name = Debug;
 		};
 		932850271A23C16B007B434F /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 38F9191AEE13FA8821D5DB59 /* Pods-PhotoDropTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -514,6 +580,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.couchbase.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhotoDrop.app/PhotoDrop";
 			};
 			name = Release;

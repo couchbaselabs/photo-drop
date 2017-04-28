@@ -9,10 +9,10 @@
 import Foundation
 
 class DatabaseUtil {
-    class func getEmptyDatabase(name: String!) throws -> CBLDatabase {
+    class func getEmptyDatabase(_ name: String!) throws -> CBLDatabase {
         do {
             let database = try CBLManager.sharedInstance().existingDatabaseNamed(name)
-            try database.deleteDatabase()
+            try database.delete()
         } catch {}
         return try CBLManager.sharedInstance().databaseNamed(name)
     }
