@@ -27,12 +27,12 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
     
     var database: CBLDatabase?
 
-    var syncUrl: NSURL!
+    var syncUrl: URL!
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView.hidden = true;
+        collectionView.isHidden = true;
 
         do {
             database = try DatabaseUtil.getEmptyDatabase("db")
@@ -43,7 +43,7 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
         }
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
         if database == nil {
@@ -61,14 +61,14 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
         }
     }
 
-    override func viewDidDisappear(animated: Bool) {
+    override func viewDidDisappear(_ animated: Bool) {
         super.viewDidDisappear(animated)
         
         stopListener()
         
         if database != nil {
             do {
-                try database!.deleteDatabase()
+                try database!.delete()
             } catch let error as NSError {
                 NSLog("Cannot delete the database with error : ", error.description)
             }
@@ -81,12 +81,12 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
     
     // MARK: - Navigation
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) { }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) { }
 
     // MARK: - Action
 
-    @IBAction func cancelAction(sender: AnyObject) {
-        self.navigationController?.dismissViewControllerAnimated(true,
+    @IBAction func cancelAction(_ sender: AnyObject) {
+        self.navigationController?.dismiss(animated: true,
             completion: { () -> Void in })
     }
 
@@ -108,8 +108,11 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
 
         listener.requiresAuth = kRequiresAuthentication
         if listener.requiresAuth {
-            username = secureGenerateKey(NSCharacterSet.URLUserAllowedCharacterSet())
-            password = secureGenerateKey(NSCharacterSet.URLPasswordAllowedCharacterSet())
+            username = secureGenerateKey(CharacterSet.urlUserAllowed) 
+            password = secureGenerateKey(CharacterSet.urlPasswordAllowed)
+            if username == nil || password == nil {
+                return false
+            }
             listener.setPasswords([username! : password!])
         }
 
@@ -120,9 +123,15 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
         } catch {
             success = false
         }
+ 
+        guard let url =  listener.url else {
+            listener = nil
+
+            return false
+        }
 
         if success {
-            syncUrl = generateSyncUrl(listener.URL, username: username, password: password,
+            syncUrl = generateSyncUrl(url, username: username, password: password,
                 db: database!.name)
             startObserveDatabaseChange()
             return true
@@ -140,20 +149,26 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
         }
     }
 
-    func secureGenerateKey(allowedCharacters: NSCharacterSet) -> String {
-        let data = NSMutableData(length:32)!
-        SecRandomCopyBytes(kSecRandomDefault, 32, UnsafeMutablePointer<UInt8>(data.mutableBytes))
-        let key = data.base64EncodedStringWithOptions(
-            NSDataBase64EncodingOptions.Encoding64CharacterLineLength)
-        return key.stringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters)!
+    func secureGenerateKey(_ allowedCharacters: CharacterSet) -> String? {
+        var data = Data(count:32)
+        let result = data.withUnsafeMutableBytes {
+            SecRandomCopyBytes(kSecRandomDefault, data.count, $0)
+        }
+        if result == errSecSuccess {
+            let key = data.base64EncodedString(
+                options: NSData.Base64EncodingOptions.lineLength64Characters)
+            return key.addingPercentEncoding(withAllowedCharacters: allowedCharacters)!
+        } else {
+            return nil
+        }
     }
 
-    func generateSyncUrl(base: NSURL, username: String?, password: String?, db: String) -> NSURL? {
-        if let url = NSURL(string: db, relativeToURL: base) {
-            if let urlComp = NSURLComponents(string: url.absoluteString) {
+    func generateSyncUrl(_ base: URL, username: String?, password: String?, db: String) -> URL? {
+        if let url = URL(string: db, relativeTo: base) {
+            if var urlComp = URLComponents(string: url.absoluteString) {
                 urlComp.user = username
                 urlComp.password = password
-                return urlComp.URL
+                return urlComp.url
             }
         }
         return nil
@@ -168,28 +183,31 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
         return library
     }
 
-    func saveImageFromDocument(docId: String) {
+    func saveImageFromDocument(_ docId: String) {
         if database == nil {
             return
         }
 
-        if let doc = database!.existingDocumentWithID(docId) {
+        if let doc = database!.existingDocument(withID: docId) {
             if let attachment = doc.currentRevision?.attachmentNamed("photo") {
                 let library = assetsLibrary()
-                library.writeImageDataToSavedPhotosAlbum(attachment.content, metadata: nil,
-                    completionBlock: { (url: NSURL!, error: NSError!) -> Void in
-                        if url != nil {
-                            library.assetForURL(url, resultBlock:
-                                {(asset: ALAsset!) -> Void in
-                                    self.assets.insert(asset, atIndex: 0)
-                                    dispatch_async(dispatch_get_main_queue(), {
-                                        self.collectionView.insertItemsAtIndexPaths(
-                                            [NSIndexPath(forRow: 0, inSection: 0)])
-                                    })
-                                })
-                                {(error: NSError!) -> Void in
+                library.writeImageData(toSavedPhotosAlbum: attachment.content!, metadata: nil, completionBlock: { (url, error) in
+                    if url != nil {
+                        
+                        library.asset(for: url, resultBlock: { (asset) in
+                            if asset != nil {
+                                self.assets.insert(asset!, at: 0)
                             }
-                        }
+                            DispatchQueue.main.async(execute: {
+                                self.collectionView.insertItems(
+                                    at:[IndexPath(row: 0, section: 0) ] )
+                            })
+                        }, failureBlock: { (error) in
+                            
+                        })
+                        
+                       
+                    }
                 })
             }
         }
@@ -198,14 +216,14 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
     // MARK: - Database Change
 
     func startObserveDatabaseChange() {
-        NSNotificationCenter.defaultCenter().addObserverForName(kCBLDatabaseChangeNotification,
+        NotificationCenter.default.addObserver(forName: NSNotification.Name.cblDatabaseChange,
             object: database, queue: nil) {
                 (notification) -> Void in
                 if let changes = notification.userInfo!["changes"] as? [CBLDatabaseChange] {
                     for change in changes {
-                        dispatch_async(dispatch_get_main_queue(), {
-                            if self.collectionView.hidden {
-                                self.collectionView.hidden = false
+                        DispatchQueue.main.async(execute: {
+                            if self.collectionView.isHidden {
+                                self.collectionView.isHidden = false
                             }
                             self.saveImageFromDocument(change.documentID)
                         })
@@ -215,35 +233,35 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
     }
 
     func stopObserveDatabaseChange() {
-        NSNotificationCenter.defaultCenter().removeObserver(self,
-            name: kCBLDatabaseChangeNotification, object: database)
+        NotificationCenter.default.removeObserver(self,
+            name: NSNotification.Name.cblDatabaseChange, object: database)
     }
 
     // MARK: - UICollectionView
 
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
             return self.assets.count
     }
 
-    func collectionView(collectionView: UICollectionView,
-        cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-            let cell = collectionView.dequeueReusableCellWithReuseIdentifier("photoCell",
-                forIndexPath: indexPath) as! PhotoViewCell
+    func collectionView(_ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell",
+                for: indexPath) as! PhotoViewCell
             let asset = assets[indexPath.row]
-            cell.imageView.image = UIImage(CGImage: asset.thumbnail().takeUnretainedValue())
+            cell.imageView.image = UIImage(cgImage: asset.thumbnail().takeUnretainedValue())
             return cell
     }
 
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
             let width = collectionView.bounds.size.width
             let size = (width - 6) / 3.0
-            return CGSizeMake(size, size)
+            return CGSize(width: size, height: size)
     }
 
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
             return 3.0

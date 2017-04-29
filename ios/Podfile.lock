@@ -1,15 +1,14 @@
 PODS:
-  - couchbase-lite-ios (1.1.1):
-    - couchbase-lite-ios/Core (= 1.1.1)
-  - couchbase-lite-ios/Core (1.1.1)
-  - couchbase-lite-ios/Listener (1.1.1):
-    - couchbase-lite-ios/Core
+  - couchbase-lite-ios (1.4.0):
+    - couchbase-lite-ios/SQLite (= 1.4.0)
+  - couchbase-lite-ios/SQLite (1.4.0)
 
 DEPENDENCIES:
-  - couchbase-lite-ios (~> 1.1.1)
-  - couchbase-lite-ios/Listener (~> 1.1.1)
+  - couchbase-lite-ios (~> 1.4.0)
 
 SPEC CHECKSUMS:
-  couchbase-lite-ios: 4ada0c645e1c72ded94296f732e6cdf58e8a7811
+  couchbase-lite-ios: 5b9f59ce74c2d981c41795f0949d31354d90c459
 
-COCOAPODS: 0.39.0.beta.4
+PODFILE CHECKSUM: cab6681d416c1718ceb9dd61aa65d3d2bba0843d
+
+COCOAPODS: 1.2.0

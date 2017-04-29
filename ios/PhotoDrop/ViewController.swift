@@ -22,21 +22,21 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        NSNotificationCenter.defaultCenter().addObserverForName(
-            UIApplicationWillEnterForegroundNotification,
+        NotificationCenter.default.addObserver(
+            forName: NSNotification.Name.UIApplicationWillEnterForeground,
             object: nil, queue: nil) { (notification) -> Void in
                 self.reloadAssets()
         }
     }
 
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
 
         enableSendMode(false)
         reloadAssets()
     }
 
-    override func viewWillDisappear(animated: Bool) {
+    override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated);
     }
 
@@ -46,9 +46,9 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     // MARK: - Navigation
 
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "send" {
-            let navigationController = segue.destinationViewController as! UINavigationController
+            let navigationController = segue.destination as! UINavigationController
             let controller = navigationController.topViewController as! SendViewController
             controller.sharedAssets = selectedAssets
         }
@@ -56,18 +56,18 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
 
     // MARK: - Navigation Bar
 
-    func enableSendMode(enabled: Bool) {
+    func enableSendMode(_ enabled: Bool) {
         if enabled {
             let sendButtonItem = UIBarButtonItem(title: "Send",
-                style: UIBarButtonItemStyle.Plain, target: self, action: "sendButtonAction:")
+                style: UIBarButtonItemStyle.plain, target: self, action: #selector(ViewController.sendButtonAction(_:)))
             self.navigationItem.rightBarButtonItem = sendButtonItem
         } else {
             self.navigationItem.rightBarButtonItem = nil
         }
     }
 
-    func sendButtonAction(sender: AnyObject) {
-        self.performSegueWithIdentifier("send", sender: self)
+    func sendButtonAction(_ sender: AnyObject) {
+        self.performSegue(withIdentifier: "send", sender: self)
     }
 
     // MARK: - ALAssetsLibrary
@@ -80,69 +80,69 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         assets = [];
         selectedAssets = [];
 
-        library.enumerateGroupsWithTypes(ALAssetsGroupSavedPhotos, usingBlock:
-            { (group:ALAssetsGroup!, stop:UnsafeMutablePointer<ObjCBool>) -> Void in
-                if group != nil {
-                    group.setAssetsFilter(ALAssetsFilter.allPhotos())
-                    group.enumerateAssetsWithOptions(NSEnumerationOptions.Reverse,
-                        usingBlock: { (asset:ALAsset!, index:Int,
-                            stop: UnsafeMutablePointer<ObjCBool>) -> Void in
-                            if asset != nil {
-                                self.assets.append(asset)
-                            }
-                    })
-                } else {
-                    dispatch_async(dispatch_get_main_queue(), {
-                        self.collectionView.reloadData()
-                    })
+        library.enumerateGroups(withTypes: ALAssetsGroupType(ALAssetsGroupSavedPhotos), using: { (group, stop) in
+            guard let group = group else {
+                DispatchQueue.main.async(execute: {
+                    self.collectionView.reloadData()
+                })
+                return
+            }
+           
+            group.setAssetsFilter(ALAssetsFilter.allPhotos())
+            group.enumerateAssets({ (asset, index, stop) in
+                if asset != nil {
+                    self.assets.append(asset!)
                 }
-            }) { (error:NSError!) -> Void in
+            })
+      
+        }) { (error) in
+            
         }
     }
 
     // MARK: - UICollectionView
 
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
         numberOfItemsInSection section: Int) -> Int {
         return self.assets.count
     }
 
-    func collectionView(collectionView: UICollectionView,
-        cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("photoCell",
-            forIndexPath: indexPath) as! PhotoViewCell
+    func collectionView(_ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell",
+            for: indexPath) as! PhotoViewCell
         let asset = assets[indexPath.row]
-        cell.imageView.image = UIImage(CGImage: asset.thumbnail().takeUnretainedValue())
+        cell.imageView.image = UIImage(cgImage: asset.thumbnail().takeUnretainedValue())
         cell.checked = selectedAssets.contains(asset)
         return cell
     }
 
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
-        sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
+        sizeForItemAtIndexPath indexPath: IndexPath) -> CGSize {
         let width = collectionView.bounds.size.width
         let size = (width - 6) / 3.0
-        return CGSizeMake(size, size)
+        return CGSize(width: size, height: size)
     }
 
-    func collectionView(collectionView: UICollectionView,
+    func collectionView(_ collectionView: UICollectionView,
         layout collectionViewLayout: UICollectionViewLayout,
         minimumLineSpacingForSectionAtIndex section: Int) -> CGFloat {
         return 3.0
     }
 
-    func collectionView(collectionView: UICollectionView,
-        didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let cell = collectionView.cellForItemAtIndexPath(indexPath) as! PhotoViewCell
+    func collectionView(_ collectionView: UICollectionView,
+        didSelectItemAt indexPath: IndexPath) {
+        let cell = collectionView.cellForItem(at: indexPath) as! PhotoViewCell
         let asset = assets[indexPath.row]
-        if let foundIndex = selectedAssets.indexOf(asset) {
-            selectedAssets.removeAtIndex(foundIndex)
+        if let foundIndex = selectedAssets.index(of: asset) {
+            selectedAssets.remove(at: foundIndex)
             cell.checked = false
         } else {
             selectedAssets.append(asset)
             cell.checked = true
         }
-        collectionView.reloadItemsAtIndexPaths([indexPath])
+        collectionView.reloadItems(at: [indexPath])
 
         self.enableSendMode(selectedAssets.count > 0)
     }

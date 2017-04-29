@@ -22,7 +22,7 @@ class PhotoViewCell: UICollectionViewCell {
         set(value) {
             _checked = value
             if checkedImageView != nil {
-                checkedImageView.hidden = !value
+                checkedImageView.isHidden = !value
             }
         }
     }
