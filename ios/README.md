@@ -1,11 +1,11 @@
 PhotoDrop iOS
 =============
 
-![screenshot] (https://cloud.githubusercontent.com/assets/801454/6072270/7774976c-ad54-11e4-9034-2045bccaf6be.png)
+![Alt Text](https://cloud.githubusercontent.com/assets/801454/6072270/7774976c-ad54-11e4-9034-2045bccaf6be.png)
 
 ## Build & Run
 
-Run the app using [Xcode 7](https://developer.apple.com/xcode/downloads/) or higher. It supports Swift 2.
+Run the app using [Xcode 8.3](https://developer.apple.com/xcode/downloads/) or higher. It supports Swift 3.
 
 1. Clone this repository.
 
