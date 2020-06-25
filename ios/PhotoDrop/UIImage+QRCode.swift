@@ -32,7 +32,7 @@ extension UIImage {
 
                 if let resized = resizedImage.cgImage {
                     return UIImage(cgImage: resized, scale: scale,
-                        orientation: UIImageOrientation.downMirrored)
+                                   orientation: UIImage.Orientation.downMirrored)
                 }
             }
         }

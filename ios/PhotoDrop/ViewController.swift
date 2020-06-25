@@ -23,7 +23,7 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
         super.viewDidLoad()
 
         NotificationCenter.default.addObserver(
-            forName: NSNotification.Name.UIApplicationWillEnterForeground,
+            forName: UIApplication.willEnterForegroundNotification,
             object: nil, queue: nil) { (notification) -> Void in
                 self.reloadAssets()
         }
@@ -59,14 +59,16 @@ class ViewController: UIViewController, UICollectionViewDataSource, UICollection
     func enableSendMode(_ enabled: Bool) {
         if enabled {
             let sendButtonItem = UIBarButtonItem(title: "Send",
-                style: UIBarButtonItemStyle.plain, target: self, action: #selector(ViewController.sendButtonAction(_:)))
+                                                 style: UIBarButtonItem.Style.plain,
+                                                 target: self,
+                                                 action: #selector(sendButtonAction(sender:)))
             self.navigationItem.rightBarButtonItem = sendButtonItem
         } else {
             self.navigationItem.rightBarButtonItem = nil
         }
     }
 
-    func sendButtonAction(_ sender: AnyObject) {
+    @objc func sendButtonAction(sender: AnyObject) {
         self.performSegue(withIdentifier: "send", sender: self)
     }
 

@@ -150,11 +150,10 @@ class ReceiveViewController: UIViewController, UICollectionViewDataSource, UICol
     }
 
     func secureGenerateKey(_ allowedCharacters: CharacterSet) -> String? {
-        var data = Data(count:32)
-        let result = data.withUnsafeMutableBytes {
-            SecRandomCopyBytes(kSecRandomDefault, data.count, $0)
-        }
+        var bytes = [UInt8](repeating: 0, count: 32)
+        let result = SecRandomCopyBytes(kSecRandomDefault, bytes.count, &bytes)
         if result == errSecSuccess {
+            let data = Data(bytes: bytes)
             let key = data.base64EncodedString(
                 options: NSData.Base64EncodingOptions.lineLength64Characters)
             return key.addingPercentEncoding(withAllowedCharacters: allowedCharacters)!

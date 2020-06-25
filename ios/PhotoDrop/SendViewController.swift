@@ -77,25 +77,25 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
     // MARK: - Capture QR Code
 
     func startCaptureSession() {
-        let device = AVCaptureDevice.defaultDevice(withMediaType: AVMediaTypeVideo)
+        let device = AVCaptureDevice.default(for: .video)
         if device == nil {
             AppDelegate.showMessage("No video capture devices found", title: "")
             return
         }
 
         do {
-            let input = try AVCaptureDeviceInput(device: device)
+            let input = try AVCaptureDeviceInput(device: device!)
             session = AVCaptureSession()
             session.addInput(input)
             
             let output = AVCaptureMetadataOutput()
             output.setMetadataObjectsDelegate(self, queue: DispatchQueue.main)
             session.addOutput(output)
-            output.metadataObjectTypes = [AVMetadataObjectTypeQRCode]
+            output.metadataObjectTypes = [AVMetadataObject.ObjectType.qr]
 
             previewLayer = AVCaptureVideoPreviewLayer(session: session)
                 as AVCaptureVideoPreviewLayer
-            previewLayer.videoGravity = AVLayerVideoGravityResizeAspectFill
+            previewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
             previewLayer.frame = self.previewView.bounds
             self.previewView.layer.addSublayer(previewLayer)
 
@@ -116,10 +116,10 @@ class SendViewController: UIViewController, AVCaptureMetadataOutputObjectsDelega
         }
 
         for metadata in metadataObjects as! [AVMetadataObject] {
-            if metadata.type == AVMetadataObjectTypeQRCode {
+            if metadata.type == AVMetadataObject.ObjectType.qr {
                 let transformed = previewLayer.transformedMetadataObject(for: metadata)
                     as! AVMetadataMachineReadableCodeObject
-                if let url = URL(string: transformed.stringValue) {
+                if let url = URL(string: transformed.stringValue!) {
                     replicate(url)
                     session.stopRunning()
                     session = nil

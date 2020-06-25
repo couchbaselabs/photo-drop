@@ -9,26 +9,14 @@
 import UIKit
 
 class PhotoViewCell: UICollectionViewCell {
-
+    @IBOutlet weak var checkedImageView: UIImageView!
     @IBOutlet weak var imageView: UIImageView!
     
-    @IBOutlet weak var checkedImageView: UIImageView!
-
-    var _checked: Bool!
-    var checked: Bool {
-        get {
-            return _checked
-        }
-        set(value) {
-            _checked = value
+    public var checked: Bool = false {
+        willSet(newValue) {
             if checkedImageView != nil {
-                checkedImageView.isHidden = !value
+                checkedImageView.isHidden = !newValue
             }
         }
-    }
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        self.checked = false
     }
 }
