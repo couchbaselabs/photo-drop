@@ -1,0 +1,528 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		931EF65E249BD01800AB49FE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931EF65D249BD01800AB49FE /* AppDelegate.swift */; };
+		931EF660249BD01800AB49FE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931EF65F249BD01800AB49FE /* SceneDelegate.swift */; };
+		931EF662249BD01800AB49FE /* PhotosViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931EF661249BD01800AB49FE /* PhotosViewController.swift */; };
+		931EF665249BD01800AB49FE /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 931EF663249BD01800AB49FE /* Main.storyboard */; };
+		931EF667249BD01A00AB49FE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 931EF666249BD01A00AB49FE /* Assets.xcassets */; };
+		931EF66A249BD01A00AB49FE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 931EF668249BD01A00AB49FE /* LaunchScreen.storyboard */; };
+		931EF675249BD01A00AB49FE /* PhotoDropTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931EF674249BD01A00AB49FE /* PhotoDropTests.swift */; };
+		931EF68A249D59DE00AB49FE /* PhotoViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931EF689249D59DE00AB49FE /* PhotoViewCell.swift */; };
+		931EF68C249D6B1C00AB49FE /* SendViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931EF68B249D6B1C00AB49FE /* SendViewController.swift */; };
+		931EF68F249D8E1300AB49FE /* CouchbaseLiteSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 931EF68E249D8E1300AB49FE /* CouchbaseLiteSwift.framework */; };
+		931EF690249D8E1300AB49FE /* CouchbaseLiteSwift.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 931EF68E249D8E1300AB49FE /* CouchbaseLiteSwift.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		931EF69524A14DEE00AB49FE /* UIImage+QRCode.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931EF69424A14DEE00AB49FE /* UIImage+QRCode.swift */; };
+		931EF69724A14E3F00AB49FE /* ReceiveViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 931EF69624A14E3F00AB49FE /* ReceiveViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		931EF671249BD01A00AB49FE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 931EF652249BD01800AB49FE /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 931EF659249BD01800AB49FE;
+			remoteInfo = PhotoDrop;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		931EF691249D8E1300AB49FE /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				931EF690249D8E1300AB49FE /* CouchbaseLiteSwift.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		931EF65A249BD01800AB49FE /* PhotoDrop.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PhotoDrop.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		931EF65D249BD01800AB49FE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		931EF65F249BD01800AB49FE /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		931EF661249BD01800AB49FE /* PhotosViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosViewController.swift; sourceTree = "<group>"; };
+		931EF664249BD01800AB49FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		931EF666249BD01A00AB49FE /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		931EF669249BD01A00AB49FE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		931EF66B249BD01A00AB49FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		931EF670249BD01A00AB49FE /* PhotoDropTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PhotoDropTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		931EF674249BD01A00AB49FE /* PhotoDropTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDropTests.swift; sourceTree = "<group>"; };
+		931EF676249BD01A00AB49FE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		931EF689249D59DE00AB49FE /* PhotoViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewCell.swift; sourceTree = "<group>"; };
+		931EF68B249D6B1C00AB49FE /* SendViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SendViewController.swift; sourceTree = "<group>"; };
+		931EF68E249D8E1300AB49FE /* CouchbaseLiteSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CouchbaseLiteSwift.framework; path = Frameworks/CouchbaseLiteSwift.framework; sourceTree = "<group>"; };
+		931EF69424A14DEE00AB49FE /* UIImage+QRCode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+QRCode.swift"; sourceTree = "<group>"; };
+		931EF69624A14E3F00AB49FE /* ReceiveViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReceiveViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		931EF657249BD01800AB49FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				931EF68F249D8E1300AB49FE /* CouchbaseLiteSwift.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		931EF66D249BD01A00AB49FE /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		931EF651249BD01800AB49FE = {
+			isa = PBXGroup;
+			children = (
+				931EF65C249BD01800AB49FE /* PhotoDrop */,
+				931EF673249BD01A00AB49FE /* PhotoDropTests */,
+				931EF65B249BD01800AB49FE /* Products */,
+				931EF68D249D8E1300AB49FE /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		931EF65B249BD01800AB49FE /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				931EF65A249BD01800AB49FE /* PhotoDrop.app */,
+				931EF670249BD01A00AB49FE /* PhotoDropTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		931EF65C249BD01800AB49FE /* PhotoDrop */ = {
+			isa = PBXGroup;
+			children = (
+				931EF65D249BD01800AB49FE /* AppDelegate.swift */,
+				931EF65F249BD01800AB49FE /* SceneDelegate.swift */,
+				931EF661249BD01800AB49FE /* PhotosViewController.swift */,
+				931EF689249D59DE00AB49FE /* PhotoViewCell.swift */,
+				931EF68B249D6B1C00AB49FE /* SendViewController.swift */,
+				931EF69624A14E3F00AB49FE /* ReceiveViewController.swift */,
+				931EF69424A14DEE00AB49FE /* UIImage+QRCode.swift */,
+				931EF663249BD01800AB49FE /* Main.storyboard */,
+				931EF666249BD01A00AB49FE /* Assets.xcassets */,
+				931EF668249BD01A00AB49FE /* LaunchScreen.storyboard */,
+				931EF66B249BD01A00AB49FE /* Info.plist */,
+			);
+			path = PhotoDrop;
+			sourceTree = "<group>";
+		};
+		931EF673249BD01A00AB49FE /* PhotoDropTests */ = {
+			isa = PBXGroup;
+			children = (
+				931EF674249BD01A00AB49FE /* PhotoDropTests.swift */,
+				931EF676249BD01A00AB49FE /* Info.plist */,
+			);
+			path = PhotoDropTests;
+			sourceTree = "<group>";
+		};
+		931EF68D249D8E1300AB49FE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				931EF68E249D8E1300AB49FE /* CouchbaseLiteSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		931EF659249BD01800AB49FE /* PhotoDrop */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 931EF679249BD01A00AB49FE /* Build configuration list for PBXNativeTarget "PhotoDrop" */;
+			buildPhases = (
+				931EF656249BD01800AB49FE /* Sources */,
+				931EF657249BD01800AB49FE /* Frameworks */,
+				931EF658249BD01800AB49FE /* Resources */,
+				931EF691249D8E1300AB49FE /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = PhotoDrop;
+			productName = PhotoDrop;
+			productReference = 931EF65A249BD01800AB49FE /* PhotoDrop.app */;
+			productType = "com.apple.product-type.application";
+		};
+		931EF66F249BD01A00AB49FE /* PhotoDropTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 931EF67C249BD01A00AB49FE /* Build configuration list for PBXNativeTarget "PhotoDropTests" */;
+			buildPhases = (
+				931EF66C249BD01A00AB49FE /* Sources */,
+				931EF66D249BD01A00AB49FE /* Frameworks */,
+				931EF66E249BD01A00AB49FE /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				931EF672249BD01A00AB49FE /* PBXTargetDependency */,
+			);
+			name = PhotoDropTests;
+			productName = PhotoDropTests;
+			productReference = 931EF670249BD01A00AB49FE /* PhotoDropTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		931EF652249BD01800AB49FE /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1150;
+				LastUpgradeCheck = 1150;
+				ORGANIZATIONNAME = "Pasin Suriyentrakorn";
+				TargetAttributes = {
+					931EF659249BD01800AB49FE = {
+						CreatedOnToolsVersion = 11.5;
+					};
+					931EF66F249BD01A00AB49FE = {
+						CreatedOnToolsVersion = 11.5;
+						TestTargetID = 931EF659249BD01800AB49FE;
+					};
+				};
+			};
+			buildConfigurationList = 931EF655249BD01800AB49FE /* Build configuration list for PBXProject "PhotoDrop" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 931EF651249BD01800AB49FE;
+			productRefGroup = 931EF65B249BD01800AB49FE /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				931EF659249BD01800AB49FE /* PhotoDrop */,
+				931EF66F249BD01A00AB49FE /* PhotoDropTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		931EF658249BD01800AB49FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				931EF66A249BD01A00AB49FE /* LaunchScreen.storyboard in Resources */,
+				931EF667249BD01A00AB49FE /* Assets.xcassets in Resources */,
+				931EF665249BD01800AB49FE /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		931EF66E249BD01A00AB49FE /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		931EF656249BD01800AB49FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				931EF662249BD01800AB49FE /* PhotosViewController.swift in Sources */,
+				931EF69524A14DEE00AB49FE /* UIImage+QRCode.swift in Sources */,
+				931EF65E249BD01800AB49FE /* AppDelegate.swift in Sources */,
+				931EF660249BD01800AB49FE /* SceneDelegate.swift in Sources */,
+				931EF69724A14E3F00AB49FE /* ReceiveViewController.swift in Sources */,
+				931EF68C249D6B1C00AB49FE /* SendViewController.swift in Sources */,
+				931EF68A249D59DE00AB49FE /* PhotoViewCell.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		931EF66C249BD01A00AB49FE /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				931EF675249BD01A00AB49FE /* PhotoDropTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		931EF672249BD01A00AB49FE /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 931EF659249BD01800AB49FE /* PhotoDrop */;
+			targetProxy = 931EF671249BD01A00AB49FE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		931EF663249BD01800AB49FE /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				931EF664249BD01800AB49FE /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		931EF668249BD01A00AB49FE /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				931EF669249BD01A00AB49FE /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		931EF677249BD01A00AB49FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		931EF678249BD01A00AB49FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		931EF67A249BD01A00AB49FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N2Q372V7W2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = PhotoDrop/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.couchbase.PhotoDrop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		931EF67B249BD01A00AB49FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N2Q372V7W2;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Frameworks",
+				);
+				INFOPLIST_FILE = PhotoDrop/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.couchbase.PhotoDrop;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		931EF67D249BD01A00AB49FE /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N2Q372V7W2;
+				INFOPLIST_FILE = PhotoDropTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.couchbase.PhotoDropTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhotoDrop.app/PhotoDrop";
+			};
+			name = Debug;
+		};
+		931EF67E249BD01A00AB49FE /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = N2Q372V7W2;
+				INFOPLIST_FILE = PhotoDropTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.couchbase.PhotoDropTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PhotoDrop.app/PhotoDrop";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		931EF655249BD01800AB49FE /* Build configuration list for PBXProject "PhotoDrop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				931EF677249BD01A00AB49FE /* Debug */,
+				931EF678249BD01A00AB49FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		931EF679249BD01A00AB49FE /* Build configuration list for PBXNativeTarget "PhotoDrop" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				931EF67A249BD01A00AB49FE /* Debug */,
+				931EF67B249BD01A00AB49FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		931EF67C249BD01A00AB49FE /* Build configuration list for PBXNativeTarget "PhotoDropTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				931EF67D249BD01A00AB49FE /* Debug */,
+				931EF67E249BD01A00AB49FE /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 931EF652249BD01800AB49FE /* Project object */;
+}
